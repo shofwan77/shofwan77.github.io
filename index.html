@@ -1024,6 +1024,27 @@
         animation-duration: .01ms !important;
         transition-duration: .01ms !important;
       }
+      .loader-subtitle {
+    margin-top: 12px;
+    color: #91a8c5;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.loader-status {
+    margin-top: 15px;
+    color: #55d6ff;
+    font-size: 10px;
+    letter-spacing: 2px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.3;
+    }
+}
     }
   </style>
 </head>
@@ -1043,6 +1064,13 @@
   <!-- PRELOADER -->
   <div id="loader">
     <div class="loader-logo">SHOFWAN.</div>
+    <div class="loader-subtitle">
+    LINUX • DEVELOPMENT • AUTOMATION
+</div>
+
+<div class="loader-status">
+    INITIALIZING PORTFOLIO...
+</div>
     <div class="loader-line"></div>
   </div>
 
