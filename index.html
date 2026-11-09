@@ -1,828 +1,2212 @@
-
+```html
 <!DOCTYPE html>
-<html lang="id" id="html-root">
+<html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shofwan — Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b18">
+  <title>Shofwan | Portfolio</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
-<style>
-:root {
-    --bg-color: #0b0f19;
-    --bg-card: rgba(30, 41, 59, 0.5);
-    --bg-card-hover: rgba(51, 65, 85, 0.6);
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent-glow: #38bdf8;
-    --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-    --border-color: rgba(255, 255, 255, 0.08);
-}
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    scroll-behavior: smooth;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.7;
-    overflow-x: hidden;
-}
-
-body.loading {
-    overflow: hidden;
-}
-
-[dir="rtl"] {
-    direction: rtl;
-    text-align: right;
-}
-
-/* INTRO LOADING */
-#intro-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: #0b0f19;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-#intro-screen.hide {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.intro-content {
-    text-align: center;
-    padding: 20px;
-    animation: introAppear 1s ease;
-}
-
-.intro-label {
-    color: var(--accent-glow);
-    letter-spacing: 5px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.intro-content h1 {
-    font-size: clamp(45px, 10vw, 85px);
-    color: white;
-    margin: 20px 0;
-    letter-spacing: 8px;
-}
-
-.intro-content h1 span {
-    color: var(--accent-glow);
-}
-
-.intro-content p {
-    color: var(--text-muted);
-    letter-spacing: 2px;
-    font-size: 13px;
-}
-
-.loader {
-    width: 220px;
-    height: 4px;
-    background: #1e293b;
-    margin: 35px auto 15px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.loader-progress {
-    width: 0%;
-    height: 100%;
-    background: var(--accent-gradient);
-    animation: loading 2.5s ease forwards;
-}
-
-.loading-text {
-    color: #64748b;
-    font-size: 11px;
-    letter-spacing: 3px;
-}
-
-@keyframes loading {
-    from { width: 0%; }
-    to { width: 100%; }
-}
-
-@keyframes introAppear {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* BACKGROUND */
-.ambient-glow {
-    position: fixed;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(56,189,248,0.12) 0%, rgba(15,23,42,0) 70%);
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* NAVBAR */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 8%;
-    background: rgba(11,15,25,0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.logo {
-    font-size: 1.3rem;
-    font-weight: 700;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--text-main);
-}
-
-/* LANGUAGE */
-.lang-selector {
-    display: flex;
-    gap: 0.3rem;
-    background: rgba(255,255,255,0.05);
-    padding: 4px;
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-}
-
-.lang-selector button {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    padding: 0.3rem 0.8rem;
-    cursor: pointer;
-    border-radius: 16px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.lang-selector button.active {
-    background: var(--accent-glow);
-    color: #0b0f19;
-}
-
-/* HERO */
-.hero-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 85vh;
-    text-align: center;
-    padding: 0 5%;
-}
-
-.profile-avatar {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 2rem;
-}
-
-.profile-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255,255,255,0.1);
-}
-
-.profile-avatar::after {
-    content: '';
-    position: absolute;
-    inset: -5px;
-    border-radius: 50%;
-    background: var(--accent-gradient);
-    z-index: -1;
-    opacity: 0.4;
-    filter: blur(10px);
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: -1px;
-    margin-bottom: 0.5rem;
-}
-
-.hero-badge {
-    display: inline-block;
-    padding: 0.4rem 1.2rem;
-    background: rgba(56,189,248,0.1);
-    color: var(--accent-glow);
-    border-radius: 30px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: 1px solid rgba(56,189,248,0.2);
-    margin-bottom: 1.5rem;
-}
-
-.hero-content p {
-    color: var(--text-muted);
-    max-width: 550px;
-    margin: 0 auto 2rem;
-    font-size: 1.05rem;
-}
-
-.btn-primary {
-    display: inline-block;
-    padding: 0.9rem 2rem;
-    background: var(--accent-gradient);
-    color: #0b0f19;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 30px;
-    box-shadow: 0 10px 25px -5px rgba(56,189,248,0.3);
-    transition: 0.3s;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px -5px rgba(56,189,248,0.4);
-}
-
-/* SECTIONS */
-.section {
-    padding: 6rem 12%;
-}
-
-.section-header {
-    margin-bottom: 3rem;
-}
-
-h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.section-desc {
-    color: var(--text-muted);
-    font-size: 1rem;
-}
-
-/* STATS */
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-}
-
-.stat-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    transition: 0.3s;
-}
-
-.stat-card:hover {
-    background: var(--bg-card-hover);
-    transform: translateY(-4px);
-}
-
-.stat-card h3 {
-    font-size: 2.5rem;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.stat-card p {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-/* PROJECTS */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
-    border-radius: 20px;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-card:hover {
-    background: var(--bg-card-hover);
-    border-color: rgba(56,189,248,0.3);
-    transform: translateY(-5px);
-}
-
-.project-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.8rem;
-}
-
-.project-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.tags span {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-    padding: 0.3rem 0.8rem;
-    font-size: 0.78rem;
-    border-radius: 20px;
-}
-
-/* TECH STACK */
-.tech-grid {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.tech-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 0.8rem 1.4rem;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    transition: 0.3s;
-}
-
-.tech-item:hover {
-    border-color: var(--accent-glow);
-    color: var(--accent-glow);
-}
-
-/* CONTACT */
-.contact-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border-color);
-    padding: 4rem 2rem;
-    border-radius: 24px;
-    text-align: center;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.github-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-top: 2rem;
-    padding: 0.9rem 2rem;
-    background: rgba(255,255,255,0.08);
-    color: var(--text-main);
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    border: 1px solid var(--border-color);
-    transition: 0.3s;
-}
-
-.github-btn:hover {
-    background: white;
-    color: #0b0f19;
-    transform: translateY(-3px);
-}
-
-footer {
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid var(--border-color);
-    color: var(--text-muted);
-    font-size: 0.85rem;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.2rem;
+  <style>
+    :root {
+      --bg: #080b18;
+      --text: #f4f7ff;
+      --muted: #a3abc2;
+      --card: rgba(20, 27, 52, .66);
+      --border: rgba(255, 255, 255, .1);
+      --accent: #65d5ff;
+      --accent2: #9b8cff;
+      --nav: rgba(8, 11, 24, .78);
+      --success: #10b981;
     }
 
-    .section {
-        padding: 4rem 6%;
+    body.light {
+      --bg: #edf2ff;
+      --text: #171d35;
+      --muted: #59627b;
+      --card: rgba(255, 255, 255, .78);
+      --border: rgba(30, 40, 80, .12);
+      --accent: #087eae;
+      --accent2: #7355d8;
+      --nav: rgba(237, 242, 255, .85);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background .4s, color .4s;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
+    }
+
+    /* SCROLL PROGRESS */
+
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 12px var(--accent);
+      z-index: 99999;
+    }
+
+    /* BACKGROUND */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(49, 91, 190, .25), transparent 40%),
+        radial-gradient(ellipse at 85% 25%, rgba(117, 65, 190, .22), transparent 42%),
+        radial-gradient(ellipse at 50% 90%, rgba(0, 160, 190, .15), transparent 45%),
+        var(--bg);
+    }
+
+    .background::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(130, 160, 255, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(130, 160, 255, .045) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .aurora {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .32;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+
+    .aurora.one {
+      background: #2767d8;
+      top: -150px;
+      left: -100px;
+    }
+
+    .aurora.two {
+      background: #873fd1;
+      right: -150px;
+      top: 25%;
+      animation-delay: -4s;
+    }
+
+    .aurora.three {
+      background: #008fae;
+      bottom: -200px;
+      left: 30%;
+      animation-delay: -7s;
+    }
+
+    @keyframes float {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(80px, 60px) scale(1.2);
+      }
+    }
+
+    /* PRELOADER */
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #080b18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 99999;
+      transition: opacity .6s, visibility .6s;
+    }
+
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-logo {
+      font-size: 35px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      color: #65d5ff;
+      text-shadow: 0 0 25px #65d5ff;
+    }
+
+    .loader-line {
+      width: 150px;
+      height: 3px;
+      background: #252c48;
+      margin-top: 20px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .loader-line::after {
+      content: "";
+      display: block;
+      height: 100%;
+      width: 50%;
+      background: #65d5ff;
+      animation: loading 1s infinite ease-in-out;
+    }
+
+    @keyframes loading {
+      from {
+        transform: translateX(-100%);
+      }
+
+      to {
+        transform: translateX(200%);
+      }
+    }
+
+    /* CURSOR */
+
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s;
+      display: none;
+    }
+
+    @media (pointer: fine) {
+      .cursor {
+        display: block;
+      }
+
+      body,
+      a,
+      button {
+        cursor: none;
+      }
+    }
+
+    .cursor.active {
+      width: 35px;
+      height: 35px;
+      background: rgba(101, 213, 255, .12);
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92%);
+      padding: 14px 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--nav);
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-decoration: none;
     }
 
     .nav-links {
-        display: none;
+      display: flex;
+      gap: 22px;
+      list-style: none;
     }
 
-    .navbar {
-        padding: 1rem 5%;
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      transition: .3s;
     }
-}
-</style>
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .control {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .control option {
+      background: #11182e;
+      color: white;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    /* GENERAL */
+
+    section {
+      width: min(1100px, 90%);
+      margin: auto;
+      padding: 110px 0 55px;
+      scroll-margin-top: 70px;
+    }
+
+    .section-title {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 35px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* HERO */
+
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      padding-top: 130px;
+    }
+
+    .profile-avatar {
+      width: 155px;
+      height: 155px;
+      padding: 5px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 35px rgba(101, 213, 255, .3);
+      margin-bottom: 25px;
+      animation: avatarGlow 3s infinite alternate;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    @keyframes avatarGlow {
+      from {
+        box-shadow: 0 0 15px rgba(101, 213, 255, .2);
+      }
+
+      to {
+        box-shadow: 0 0 40px rgba(101, 213, 255, .55);
+      }
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      background: rgba(16, 185, 129, .1);
+      border: 1px solid rgba(16, 185, 129, .3);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--success);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, .7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(40px, 8vw, 75px);
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .typing {
+      color: var(--accent);
+      font-weight: 700;
+      min-height: 30px;
+      margin-top: 12px;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      max-width: 650px;
+      line-height: 1.9;
+      margin: 20px auto;
+      font-size: 15px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      padding: 13px 23px;
+      border-radius: 11px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .3s;
+      cursor: pointer;
+      border: 1px solid var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent2));
+      color: #07101e;
+      border: none;
+    }
+
+    .btn-outline {
+      color: var(--accent);
+      background: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(101, 213, 255, .2);
+    }
+
+    /* ABOUT */
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(15px);
+      line-height: 1.9;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .highlight {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .highlight i {
+      color: var(--accent);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .highlight h3 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .highlight p {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* PROJECTS */
+
+    .filter-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 9px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent);
+      color: #07101e;
+      border-color: var(--accent);
+    }
+
+    .project-search {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .project-search input {
+      width: 100%;
+      padding: 14px 45px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      outline: none;
+      font-size: 13px;
+    }
+
+    .project-search input:focus {
+      border-color: var(--accent);
+    }
+
+    .project-search i {
+      position: absolute;
+      left: 17px;
+      top: 17px;
+      color: var(--accent);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      backdrop-filter: blur(15px);
+      cursor: pointer;
+      transition: .35s;
+      min-height: 230px;
+    }
+
+    .project-card.hide {
+      display: none;
+    }
+
+    .project-card:hover {
+      transform: translateY(-9px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 35px rgba(50, 130, 220, .13);
+    }
+
+    .project-card.featured {
+      border-color: rgba(101, 213, 255, .4);
+    }
+
+    .project-icon {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .project-card h3 {
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .project-hint {
+      display: block;
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    #emptyProjects {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 14px;
+      transition: .3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .skill-info i {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, .1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1.2s ease-in-out;
+    }
+
+    /* CONTACT */
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .contact-card {
+      padding: 30px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      transition: .3s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+    }
+
+    .contact-card h3 {
+      margin-bottom: 15px;
+    }
+
+    .contact-card>p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social-links a,
+    .copy-btn {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--accent);
+      background: rgba(101, 213, 255, .08);
+      border: 1px solid var(--border);
+      font-size: 18px;
+      text-decoration: none;
+      transition: .3s;
+      cursor: pointer;
+    }
+
+    .social-links a:hover,
+    .copy-btn:hover {
+      transform: translateY(-5px);
+      background: var(--accent);
+      color: #07101e;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 13px 15px;
+      background: rgba(0, 0, 0, .2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 13px;
+      margin-bottom: 15px;
+      outline: none;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .contact-form .btn {
+      width: 100%;
+    }
+
+    /* TOAST */
+
+    #toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--accent);
+      color: #07101e;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
+      transition: transform .3s ease;
+      z-index: 4000;
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* BACK TO TOP */
+
+    #backToTop {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 45px;
+      height: 45px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s;
+      z-index: 2000;
+    }
+
+    #backToTop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0, 0, 0, .75);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(520px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #11182e;
+      color: #f4f7ff;
+      border: 1px solid rgba(101, 213, 255, .3);
+      border-radius: 20px;
+      padding: 30px;
+      position: relative;
+      animation: modalIn .3s ease;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal-content h2 {
+      color: #65d5ff;
+      margin-bottom: 15px;
+      padding-right: 25px;
+    }
+
+    .modal-content p {
+      color: #b6c0d8;
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .modal-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .modal-tech span {
+      font-size: 11px;
+      padding: 7px 11px;
+      border-radius: 8px;
+      color: #65d5ff;
+      background: rgba(101, 213, 255, .1);
+      border: 1px solid rgba(101, 213, 255, .2);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    /* REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .8s, transform .8s;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+      nav {
+        width: 94%;
+        padding: 12px 15px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px;
+        border-radius: 15px;
+        background: var(--nav);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 13px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .project-grid,
+      .skills-grid,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .about-highlights {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 90px 0 40px;
+      }
+
+      .section-title {
+        font-size: 26px;
+      }
+
+      .hero-title {
+        font-size: 43px;
+      }
+
+      .profile-avatar {
+        width: 130px;
+        height: 130px;
+      }
+
+      .contact-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .logo {
+        font-size: 17px;
+      }
+
+      .control {
+        padding: 7px;
+        font-size: 11px;
+      }
+
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      .btn {
+        padding: 12px 17px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="loading">
+<body>
 
-<!-- INTRO LOADING -->
-<div id="intro-screen">
-    <div class="intro-content">
-        <span class="intro-label">WELCOME TO MY PORTFOLIO</span>
-        <h1>SHOFWAN<span>.</span></h1>
-        <p>LINUX | WEB DEVELOPMENT | AUTOMATION</p>
+  <!-- SCROLL PROGRESS -->
+  <div id="scrollProgress"></div>
 
-        <div class="loader">
-            <div class="loader-progress"></div>
-        </div>
+  <!-- BACKGROUND -->
+  <div class="background">
+    <div class="aurora one"></div>
+    <div class="aurora two"></div>
+    <div class="aurora three"></div>
+  </div>
 
-        <span class="loading-text">LOADING...</span>
-    </div>
-</div>
+  <!-- PRELOADER -->
+  <div id="loader">
+    <div class="loader-logo">SHOFWAN.</div>
+    <div class="loader-line"></div>
+  </div>
 
-<div class="ambient-glow"></div>
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="logo">Shofwan</div>
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#home" class="logo">SHOFWAN.</a>
 
-    <ul class="nav-links">
-        <li><a href="#home" data-i18n="nav-home">Beranda</a></li>
-        <li><a href="#about" data-i18n="nav-about">Tentang</a></li>
-        <li><a href="#projects" data-i18n="nav-projects">Portofolio</a></li>
-        <li><a href="#tech" data-i18n="nav-tech">Tech Stack</a></li>
-        <li><a href="#contact" data-i18n="nav-contact">Kontak</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" data-i18n="navHome">Home</a></li>
+      <li><a href="#about" data-i18n="navAbout">About</a></li>
+      <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
+      <li><a href="#tech" data-i18n="navTech">Tech Stack</a></li>
+      <li><a href="#contact" data-i18n="navContact">Contact</a></li>
     </ul>
 
-    <div class="lang-selector">
-        <button onclick="setLanguage('id')" id="btn-id" class="active">ID</button>
-        <button onclick="setLanguage('en')" id="btn-en">EN</button>
-        <button onclick="setLanguage('ar')" id="btn-ar">AR</button>
+    <div class="nav-actions">
+
+      <select class="control" id="language" onchange="setLanguage(this.value)">
+        <option value="id">ID</option>
+        <option value="en">EN</option>
+        <option value="ar">AR</option>
+      </select>
+
+      <button class="control" onclick="toggleTheme()" title="Ganti tema">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+      </button>
+
+      <button class="control menu-toggle" onclick="toggleMenu()" title="Menu">
+        <i class="fa-solid fa-bars" id="menuIcon"></i>
+      </button>
+
     </div>
-</nav>
+  </nav>
 
-<!-- HERO -->
-<section id="home" class="hero-section">
-    <div class="hero-content">
+  <!-- HOME -->
+  <section id="home">
 
-        <div class="profile-avatar">
-           <img src="profil.jpeg" alt="Foto Profil Shofwan" class="profile-img" />
+    <div class="profile-avatar reveal">
+      <img src="assets/profile.jpeg" alt="Foto Profil Shofwan" class="profile-img">
+    </div>
+
+    <div class="status-badge reveal">
+      <span class="pulse-dot"></span>
+      <span data-i18n="statusBadge">
+        Available for projects & collaboration
+      </span>
+    </div>
+
+    <h1 class="hero-title reveal">
+      Hi, I'm <span class="gradient-text">Shofwan</span>
+    </h1>
+
+    <div class="typing reveal">
+      <span id="typingText"></span>
+    </div>
+
+    <p class="hero-description reveal" data-i18n="heroDesc">
+      Seorang pelajar yang tertarik dengan Linux, automation,
+      infrastructure, dan web development. Saya senang belajar
+      melalui project dan eksperimen.
+    </p>
+
+    <div class="hero-buttons reveal">
+
+      <a href="#projects" class="btn btn-primary" data-i18n="explore">
+        <i class="fa-solid fa-code"></i>
+        Explore Projects
+      </a>
+
+      <a href="#contact" class="btn btn-outline" data-i18n="contactMe">
+        <i class="fa-solid fa-paper-plane"></i>
+        Contact Me
+      </a>
+
+      <a href="assets/CV-Shofwan.pdf" class="btn btn-outline" download>
+        <i class="fa-solid fa-download"></i>
+        Download CV
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <h2 class="section-title reveal" data-i18n="aboutTitle">
+      About <span class="gradient-text">Me</span>
+    </h2>
+
+    <p class="section-subtitle reveal" data-i18n="aboutSubtitle">
+      A little introduction about myself.
+    </p>
+
+    <div class="about-card reveal" data-i18n="aboutDesc">
+      Saya adalah seorang pelajar yang memiliki ketertarikan pada
+      dunia teknologi, khususnya Linux, automation, infrastructure,
+      dan web development. Saya suka mempelajari hal baru dengan
+      membangun project, mencoba berbagai tools, dan menyelesaikan
+      masalah secara langsung.
+    </div>
+
+    <div class="about-highlights reveal">
+
+      <div class="highlight">
+        <i class="fa-brands fa-linux"></i>
+        <h3>Linux Enthusiast</h3>
+        <p>Exploring Linux and system administration.</p>
+      </div>
+
+      <div class="highlight">
+        <i class="fa-solid fa-code"></i>
+        <h3>Web Development</h3>
+        <p>Building websites and interactive applications.</p>
+      </div>
+
+      <div class="highlight">
+        <i class="fa-solid fa-gears"></i>
+        <h3>Automation</h3>
+        <p>Learning automation and infrastructure.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+
+    <h2 class="section-title reveal" data-i18n="projectsTitle">
+      My <span class="gradient-text">Projects</span>
+    </h2>
+
+    <p class="section-subtitle reveal" data-i18n="projectsSubtitle">
+      Some projects I have built.
+    </p>
+
+    <!-- FILTER -->
+    <div class="filter-container reveal">
+
+      <button class="filter-btn active" data-filter="all" onclick="filterProjects('all', this)">All</button>
+
+      <button class="filter-btn" data-filter="linux" onclick="filterProjects('linux', this)">Linux & SysAdmin</button>
+
+      <button class="filter-btn" data-filter="web" onclick="filterProjects('web', this)">Web Development</button>
+
+    </div>
+
+    <!-- SEARCH -->
+    <div class="project-search reveal">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="projectSearch" placeholder="Search projects..." oninput="searchProjects()">
+    </div>
+
+    <!-- PROJECT GRID -->
+    <div class="project-grid">
+
+      <div class="project-card reveal" data-category="linux" onclick="openProject(0)">
+
+        <div class="project-icon">
+          <i class="fa-brands fa-linux"></i>
         </div>
 
-        <h1 data-i18n="hero-title">Saya Shofwan.</h1>
+        <h3>Linux Automation</h3>
 
-        <div class="hero-badge" data-i18n="hero-role">
-            Student • Linux Enthusiast • Developer
-        </div>
-
-        <p data-i18n="hero-desc">
-            Saya seorang pelajar yang tertarik dengan dunia teknologi,
-            khususnya Linux, Web Development, Automation, dan Infrastructure.
-            Saya senang belajar melalui praktik, membangun proyek, dan mencoba
-            berbagai teknologi baru.
+        <p>
+          Automasi sederhana menggunakan Linux, Bash,
+          systemd service, dan timer.
         </p>
 
-        <a href="#projects" class="btn-primary" data-i18n="hero-btn">
-            Lihat Project
-        </a>
-    </div>
-</section>
+        <span class="project-hint">View Details →</span>
+      </div>
 
-<!-- ABOUT -->
-<section id="about" class="section">
-    <div class="section-header">
-        <h2 data-i18n="about-title">Tentang Saya</h2>
-        <p class="section-desc" data-i18n="about-desc">
-            Profil singkat dan perjalanan belajar teknologi.
+      <div class="project-card reveal" data-category="web" onclick="openProject(1)">
+
+        <div class="project-icon">
+          <i class="fa-solid fa-photo-film"></i>
+        </div>
+
+        <h3>Binar Multimedia</h3>
+
+        <p>
+          Website penyewaan peralatan audiovisual
+          dengan katalog dan sistem peminjaman.
         </p>
-    </div>
 
-    <div class="stats-container">
-        <div class="stat-card">
-            <h3>3+</h3>
-            <p data-i18n="stat-projects">Project Selesai</p>
+        <span class="project-hint">View Details →</span>
+      </div>
+
+      <div class="project-card featured reveal" data-category="web" onclick="openProject(2)">
+
+        <div class="project-icon">
+          <i class="fa-solid fa-envelope-open-text"></i>
         </div>
 
-        <div class="stat-card">
-            <h3>5+</h3>
-            <p data-i18n="stat-tech">Teknologi Dipelajari</p>
-        </div>
+        <h3>Digital Wedding Invitation</h3>
 
-        <div class="stat-card">
-            <h3>100%</h3>
-            <p data-i18n="stat-passion">Semangat Belajar</p>
-        </div>
-    </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="section">
-    <div class="section-header">
-        <h2 data-i18n="projects-title">Projects Yang Telah Dibangun</h2>
-        <p class="section-desc" data-i18n="projects-desc">
-            Beberapa project yang saya kerjakan selama belajar teknologi.
+        <p>
+          Website undangan pernikahan Shofwan & Safira
+          dengan slideshow, countdown, musik, RSVP,
+          dan buku ucapan.
         </p>
-    </div>
 
-    <div class="projects-grid">
+        <span class="project-hint">View Details →</span>
+      </div>
 
-        <div class="project-card">
-            <h3>🐧 Linux Automation</h3>
-            <p data-i18n="proj1-desc">
-                Otomatisasi konfigurasi sistem Linux dan pembuatan layanan
-                latar belakang menggunakan Systemd serta skrip Bash.
-            </p>
-            <div class="tags">
-                <span>Linux</span>
-                <span>Systemd</span>
-                <span>Bash</span>
-            </div>
+      <div class="project-card reveal" data-category="web" onclick="openProject(3)">
+
+        <div class="project-icon">
+          <i class="fa-solid fa-box-open"></i>
         </div>
 
-        <div class="project-card">
-            <h3>🎥 Binar Multimedia</h3>
-            <p data-i18n="proj2-desc">
-                Pengembangan website penyewaan peralatan audiovisual
-                dengan katalog produk dan tampilan interaktif.
-            </p>
-            <div class="tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-            </div>
+        <h3>PinjamYuk</h3>
+
+        <p>
+          Aplikasi pengelolaan inventaris barang,
+          peminjaman, dan pengembalian.
+        </p>
+
+        <span class="project-hint">View Details →</span>
+      </div>
+
+      <div class="project-card reveal" data-category="web" onclick="openProject(4)">
+
+        <div class="project-icon">
+          <i class="fa-solid fa-compact-disc"></i>
         </div>
 
-        <div class="project-card">
-            <h3>💍 Digital Wedding Invitation</h3>
-            <p data-i18n="proj3-desc">
-                Membuat website undangan pernikahan digital dengan slideshow
-                foto, countdown, musik, RSVP, dan ucapan tamu.
-            </p>
-            <div class="tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>Firebase</span>
-            </div>
+        <h3>Music Background Player</h3>
+
+        <p>
+          Website pemutar musik dengan tampilan record player,
+          playlist, dan fitur lirik lagu.
+        </p>
+
+        <span class="project-hint">View Details →</span>
+      </div>
+
+      <div id="emptyProjects">
+        <i class="fa-solid fa-folder-open"></i>
+        <p>No projects found.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TECH STACK -->
+  <section id="tech">
+
+    <h2 class="section-title reveal" data-i18n="techTitle">
+      Tech <span class="gradient-text">Stack</span>
+    </h2>
+
+    <p class="section-subtitle reveal" data-i18n="techSubtitle">
+      Technologies and tools I explore.
+    </p>
+
+    <div class="skills-grid reveal">
+
+      <div class="skill-card">
+        <div class="skill-info">
+          <span><i class="fa-brands fa-linux"></i> Linux & Bash</span>
+          <span>85%</span>
         </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-progress="85%"></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-info">
+          <span><i class="fa-brands fa-html5"></i> HTML & CSS</span>
+          <span>90%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-progress="90%"></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-info">
+          <span><i class="fa-brands fa-js"></i> JavaScript</span>
+          <span>75%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-progress="75%"></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-info">
+          <span><i class="fa-brands fa-java"></i> Java</span>
+          <span>65%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-progress="65%"></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-info">
+          <span><i class="fa-solid fa-server"></i> Systemd & Server</span>
+          <span>80%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-progress="80%"></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-info">
+          <span><i class="fa-brands fa-git-alt"></i> Git & GitHub</span>
+          <span>75%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-progress="75%"></div>
+        </div>
+      </div>
 
     </div>
-</section>
 
-<!-- TECH STACK -->
-<section id="tech" class="section">
-    <div class="section-header">
-        <h2 data-i18n="tech-title">Tech Stack</h2>
-    </div>
+  </section>
 
-    <div class="tech-grid">
-        <div class="tech-item"><i class="fa-brands fa-linux"></i><span>Linux</span></div>
-        <div class="tech-item"><i class="fa-solid fa-terminal"></i><span>Bash</span></div>
-        <div class="tech-item"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
-        <div class="tech-item"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
-        <div class="tech-item"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
-        <div class="tech-item"><i class="fa-solid fa-database"></i><span>Firebase</span></div>
-    </div>
-</section>
+  <!-- CONTACT -->
+  <section id="contact">
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-    <div class="contact-card">
-        <h2 data-i18n="contact-title">Hubungi Saya</h2>
+    <h2 class="section-title reveal" data-i18n="contactTitle">
+      Get In <span class="gradient-text">Touch</span>
+    </h2>
 
-        <p class="section-desc" data-i18n="contact-desc">
-            Mari terhubung dan berbagi pengalaman seputar teknologi.
+    <p class="section-subtitle reveal" data-i18n="contactSubtitle">
+      Let's connect and share ideas.
+    </p>
+
+    <div class="contact-wrapper">
+
+      <!-- SOCIAL LINKS -->
+      <div class="contact-card reveal">
+
+        <h3 data-i18n="contactHeading">
+          Find me on these platforms
+        </h3>
+
+        <p>
+          Tertarik untuk berkolaborasi atau sekadar
+          berbagi ide? Hubungi saya melalui platform berikut.
         </p>
 
         <div class="social-links">
 
-            <a href="https://github.com/shofwan77" target="_blank" rel="noopener noreferrer" class="github-btn">
-                <i class="fa-brands fa-github"></i>
-                GitHub
-            </a>
+          <a href="https://github.com/shofwan77" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
 
-            <a href="https://www.instagram.com/shopwaaan/" target="_blank" rel="noopener noreferrer" class="github-btn">
-                <i class="fa-brands fa-instagram"></i>
-                Instagram
-            </a>
+          <a href="https://www.instagram.com/USERNAME/" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
 
-            <a href="https://www.linkedin.com/in/shofwanone/" target="_blank" rel="noopener noreferrer" class="github-btn">
-                <i class="fa-brands fa-linkedin"></i>
-                LinkedIn
-            </a>
+          <a href="https://www.linkedin.com/in/USERNAME/" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+
+          <a href="https://wa.me/6285868028808" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+
+          <button class="copy-btn" onclick="copyEmail('EMAIL_KAMU@example.com')" title="Copy Email">
+            <i class="fa-solid fa-copy"></i>
+          </button>
 
         </div>
+
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="contact-card reveal">
+
+        <h3 data-i18n="messageTitle">Send Me a Message</h3>
+
+        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+
+          <input type="text" id="senderName" placeholder="Nama Anda" required>
+
+          <input type="email" id="senderEmail" placeholder="Email Anda" required>
+
+          <textarea id="senderMessage" rows="4" placeholder="Tulis pesan..." required></textarea>
+
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span data-i18n="sendMessage">Kirim Pesan</span>
+          </button>
+
+        </form>
+
+      </div>
+
     </div>
-</section>
 
-<footer>
-    <p>&copy; 2026 Shofwan. Crafted with style.</p>
-</footer>
+  </section>
 
-<script>
-/* INTRO LOADING */
-window.addEventListener("load", function () {
-    const intro = document.getElementById("intro-screen");
+  <!-- FOOTER -->
+  <footer>
+    © <span id="year"></span> Shofwan.
+    <span data-i18n="footer">
+      Built with curiosity and passion.
+    </span>
+  </footer>
 
-    setTimeout(function () {
-        intro.classList.add("hide");
-        document.body.classList.remove("loading");
+  <!-- BACK TO TOP -->
+  <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
-        setTimeout(function () {
-            intro.style.display = "none";
-        }, 800);
+  <!-- TOAST -->
+  <div id="toast" role="status"></div>
 
-    }, 2700);
-});
+  <!-- PROJECT MODAL -->
+  <div class="modal" id="projectModal" onclick="closeOutside(event)">
 
-/* LANGUAGE TRANSLATION */
-const translations = {
-    id: {
-        "nav-home": "Beranda",
-        "nav-about": "Tentang",
-        "nav-projects": "Portofolio",
-        "nav-tech": "Tech Stack",
-        "nav-contact": "Kontak",
+    <div class="modal-content">
 
-        "hero-title": "Saya Shofwan.",
-        "hero-role": "Pelajar • Linux Enthusiast • Developer",
-        "hero-desc": "Saya seorang pelajar yang tertarik dengan dunia teknologi, khususnya Linux, Web Development, Automation, dan Infrastructure. Saya senang belajar melalui praktik, membangun proyek, dan mencoba berbagai teknologi baru.",
-        "hero-btn": "Lihat Project",
+      <button class="modal-close" onclick="closeProject()">
+        &times;
+      </button>
 
-        "about-title": "Tentang Saya",
-        "about-desc": "Profil singkat dan perjalanan belajar teknologi.",
+      <h2 id="modalTitle"></h2>
 
-        "stat-projects": "Project Selesai",
-        "stat-tech": "Teknologi Dipelajari",
-        "stat-passion": "Semangat Belajar",
+      <p id="modalDescription"></p>
 
-        "projects-title": "Projects Yang Telah Dibangun",
-        "projects-desc": "Beberapa project yang saya kerjakan selama belajar teknologi.",
+      <div class="modal-tech" id="modalTech"></div>
 
-        "proj1-desc": "Otomatisasi konfigurasi sistem Linux dan pembuatan layanan latar belakang menggunakan Systemd serta skrip Bash.",
-        "proj2-desc": "Pengembangan website penyewaan peralatan audiovisual dengan katalog produk dan tampilan interaktif.",
-        "proj3-desc": "Membuat website undangan pernikahan digital dengan slideshow foto, countdown, musik, RSVP, dan ucapan tamu.",
+      <div class="modal-buttons">
 
-        "tech-title": "Tech Stack",
+        <a id="projectGithub" class="btn btn-outline" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i>
+          GitHub
+        </a>
 
-        "contact-title": "Hubungi Saya",
-        "contact-desc": "Mari terhubung dan berbagi pengalaman seputar teknologi."
-    },
+        <a id="projectDemo" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          Live Demo
+        </a>
 
-    en: {
-        "nav-home": "Home",
-        "nav-about": "About",
-        "nav-projects": "Portfolio",
-        "nav-tech": "Tech Stack",
-        "nav-contact": "Contact",
+      </div>
 
-        "hero-title": "I am Shofwan.",
-        "hero-role": "Student • Linux Enthusiast • Developer",
-        "hero-desc": "I am a student interested in technology, especially Linux, Web Development, Automation, and Infrastructure. I enjoy learning through practice, building projects, and exploring new technologies.",
-        "hero-btn": "View Projects",
+    </div>
 
-        "about-title": "About Me",
-        "about-desc": "A short introduction and my technology learning journey.",
+  </div>
 
-        "stat-projects": "Projects Completed",
-        "stat-tech": "Technologies Learned",
-        "stat-passion": "Passion for Learning",
+  <script>
 
-        "projects-title": "Projects I Have Built",
-        "projects-desc": "Some projects I have worked on while learning technology.",
+    /* =====================================
+       PROJECT DATA
+    ===================================== */
 
-        "proj1-desc": "Automation of Linux system configurations and background services using Systemd and Bash scripts.",
-        "proj2-desc": "Development of an audiovisual equipment rental website with a product catalog and interactive interface.",
-        "proj3-desc": "Creating a digital wedding invitation website with a photo slideshow, countdown, music, RSVP, and guest messages.",
+    const projects = [
+      {
+        title: "Linux Automation",
+        description:
+          "Project automasi sederhana di Linux menggunakan Bash dan systemd service serta timer. Salah satu eksperimennya adalah membuat jadwal auto-shutdown otomatis setiap malam.",
 
-        "tech-title": "Tech Stack",
+        technologies: [
+          "Linux",
+          "Systemd",
+          "Bash",
+          "Terminal"
+        ],
 
-        "contact-title": "Contact Me",
-        "contact-desc": "Let's connect and share experiences about technology."
-    },
+        github: "",
+        demo: ""
+      },
 
-    ar: {
-        "nav-home": "الرئيسية",
-        "nav-about": "عنّي",
-        "nav-projects": "الأعمال",
-        "nav-tech": "التقنيات",
-        "nav-contact": "التواصل",
+      {
+        title: "Binar Multimedia",
+        description:
+          "Website penyewaan peralatan audiovisual yang menyediakan katalog produk, detail peralatan, informasi stok, dan sistem keranjang peminjaman.",
 
-        "hero-title": "أنا صفوان.",
-        "hero-role": "طالب • محب لنظام لينكس • مطور",
-        "hero-desc": "أنا طالب مهتم بالتكنولوجيا، وخاصة لينكس وتطوير الويب والأتمتة والبنية التحتية. أحب التعلم من خلال التطبيق العملي وبناء المشاريع وتجربة التقنيات الجديدة.",
-        "hero-btn": "عرض المشاريع",
+        technologies: [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Node.js"
+        ],
 
-        "about-title": "نبذة عني",
-        "about-desc": "تعريف مختصر ورحلتي في تعلم التكنولوجيا.",
+        github: "",
+        demo: ""
+      },
 
-        "stat-projects": "المشاريع المكتملة",
-        "stat-tech": "التقنيات التي تعلمتها",
-        "stat-passion": "الشغف بالتعلم",
+      {
+        title: "Digital Wedding Invitation",
+        description:
+          "Website undangan pernikahan digital Shofwan & Safira. Memiliki slideshow foto, countdown pernikahan, musik, RSVP, serta buku ucapan yang terintegrasi dengan Firebase dan Firestore.",
 
-        "projects-title": "المشاريع التي أنجزتها",
-        "projects-desc": "بعض المشاريع التي عملت عليها أثناء تعلم التكنولوجيا.",
+        technologies: [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Firebase",
+          "Firestore"
+        ],
 
-        "proj1-desc": "أتمتة تكوينات نظام لينكس وخدمات الخلفية باستخدام Systemd وسكريبتات Bash.",
-        "proj2-desc": "تطوير موقع لتأجير المعدات السمعية والبصرية مع كتالوج منتجات وواجهة تفاعلية.",
-        "proj3-desc": "إنشاء موقع دعوة زفاف رقمي مع عرض الصور والعد التنازلي والموسيقى وتأكيد الحضور ورسائل الضيوف.",
+        github: "https://github.com/shofwan77/UndanganPernikahan",
+        demo: ""
+      },
 
-        "tech-title": "التقنيات المستخدمة",
+      {
+        title: "PinjamYuk",
+        description:
+          "Aplikasi pengelolaan inventaris dan peminjaman barang. Memiliki fitur daftar barang, pencatatan peminjaman, dan pengembalian barang.",
 
-        "contact-title": "تواصل معي",
-        "contact-desc": "دعنا نتواصل ونتبادل الخبرات حول التكنولوجيا."
-    }
-};
+        technologies: [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Node.js"
+        ],
 
-function setLanguage(lang) {
-    const htmlRoot = document.getElementById("html-root");
+        github: "",
+        demo: ""
+      },
 
-    if (lang === "ar") {
-        htmlRoot.setAttribute("dir", "rtl");
-    } else {
-        htmlRoot.removeAttribute("dir");
-    }
+      {
+        title: "Music Background Player",
+        description:
+          "Website pemutar musik dengan desain record player, panel playlist, pemutaran musik, dan fitur tampilan lirik lagu.",
 
-    document.querySelectorAll(".lang-selector button").forEach(btn => {
-        btn.classList.remove("active");
+        technologies: [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+
+        github: "",
+        demo: ""
+      }
+    ];
+
+
+    /* =====================================
+       PRELOADER
+    ===================================== */
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loader").classList.add("hide");
+      }, 800);
     });
 
-    document.getElementById("btn-" + lang).classList.add("active");
 
-    document.querySelectorAll("[data-i18n]").forEach(element => {
-        const key = element.getAttribute("data-i18n");
+    /* =====================================
+       TYPING ANIMATION
+    ===================================== */
 
-        if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
+    const typingWords = [
+      "Linux Enthusiast",
+      "Web Developer",
+      "Automation Learner",
+      "Technology Explorer"
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+
+      const element = document.getElementById("typingText");
+      const word = typingWords[wordIndex];
+
+      element.textContent = word.substring(0, charIndex);
+
+      if (!deleting) {
+
+        charIndex++;
+
+        if (charIndex > word.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1200);
+          return;
         }
+
+      } else {
+
+        charIndex--;
+
+        if (charIndex < 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % typingWords.length;
+          charIndex = 0;
+        }
+
+      }
+
+      setTimeout(typeEffect, deleting ? 45 : 90);
+    }
+
+    typeEffect();
+
+
+    /* =====================================
+       SCROLL REVEAL
+    ===================================== */
+
+    const observer = new IntersectionObserver((entries) => {
+
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.classList.add("active");
+
+          if (entry.target.id === "tech") {
+            document.querySelectorAll(".skill-progress").forEach(bar => {
+              bar.style.width = bar.dataset.progress;
+            });
+          }
+
+        }
+
+      });
+
+    }, {
+      threshold: 0.12
     });
-}
-</script>
+
+    document.querySelectorAll(".reveal, section").forEach(element => {
+      observer.observe(element);
+    });
+
+
+    /* =====================================
+       SCROLL PROGRESS & BACK TO TOP
+    ===================================== */
+
+    const backToTopBtn = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+
+      const scrollTop = window.scrollY;
+
+      const height =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      const progress = height > 0
+        ? (scrollTop / height) * 100
+        : 0;
+
+      document.getElementById("scrollProgress").style.width =
+        progress + "%";
+
+      if (scrollTop > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+
+    /* =====================================
+       CUSTOM CURSOR
+    ===================================== */
+
+    const cursor = document.getElementById("cursor");
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+      });
+
+      document.addEventListener("mouseover", (e) => {
+
+        if (e.target.closest("a, button, .project-card, input, textarea, select")) {
+          cursor.classList.add("active");
+        } else {
+          cursor.classList.remove("active");
+        }
+
+      });
+
+    }
+
+
+    /* =====================================
+       THEME SWITCHER
+    ===================================== */
+
+    function toggleTheme() {
+
+      document.body.classList.toggle("light");
+
+      const theme = document.body.classList.contains("light")
+        ? "light"
+        : "dark";
+
+      localStorage.setItem("portfolioTheme", theme);
+    }
+
+    if (localStorage.getItem("portfolioTheme") === "light") {
+      document.body.classList.add("light");
+    }
+
+
+    /* =====================================
+       MOBILE NAVIGATION
+    ===================================== */
+
+    function toggleMenu() {
+
+      const nav = document.getElementById("navLinks");
+      const icon = document.getElementById("menuIcon");
+
+      nav.classList.toggle("show");
+
+      icon.className = nav.classList.contains("show")
+        ? "fa-solid fa-xmark"
+        : "fa-solid fa-bars";
+    }
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        document.getElementById("navLinks").classList.remove("show");
+
+        document.getElementById("menuIcon").className =
+          "fa-solid fa-bars";
+
+      });
+
+    });
+
+
+    /* =====================================
+       PROJECT FILTER
+    ===================================== */
+
+    let activeCategory = "all";
+
+    function filterProjects(category, button) {
+
+      activeCategory = category;
+
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      searchProjects();
+    }
+
+
+    /* =====================================
+       PROJECT SEARCH
+    ===================================== */
+
+    function searchProjects() {
+
+      const keyword = document
+        .getElementById("projectSearch")
+        .value.toLowerCase();
+
+      let visibleCount = 0;
+
+      document.querySelectorAll(".project-card").forEach(card => {
+
+        const name = card.querySelector("h3").textContent.toLowerCase();
+
+        const description = card.querySelector("p").textContent.toLowerCase();
+
+        const category = card.dataset.category;
+
+        const matchesSearch =
+          name.includes(keyword) || description.includes(keyword);
+
+        const matchesCategory =
+          activeCategory === "all" || category === activeCategory;
+
+        const visible = matchesSearch && matchesCategory;
+
+        card.classList.toggle("hide", !visible);
+
+        if (visible) visibleCount++;
+
+      });
+
+      document.getElementById("emptyProjects").style.display =
+        visibleCount === 0 ? "block" : "none";
+    }
+
+
+    /* =====================================
+       PROJECT MODAL
+    ===================================== */
+
+    function openProject(index) {
+
+      const project = projects[index];
+
+      document.getElementById("modalTitle").textContent =
+        project.title;
+
+      document.getElementById("modalDescription").textContent =
+        project.description;
+
+      document.getElementById("modalTech").innerHTML =
+        project.technologies
+          .map(tech => `<span>${tech}</span>`)
+          .join("");
+
+      const github = document.getElementById("projectGithub");
+      const demo = document.getElementById("projectDemo");
+
+      github.href = project.github || "#";
+      demo.href = project.demo || "#";
+
+      github.style.display =
+        project.github ? "inline-flex" : "none";
+
+      demo.style.display =
+        project.demo ? "inline-flex" : "none";
+
+      document.getElementById("projectModal").classList.add("show");
+
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeProject() {
+
+      document.getElementById("projectModal").classList.remove("show");
+
+      document.body.style.overflow = "";
+    }
+
+    function closeOutside(event) {
+
+      if (event.target.id === "projectModal") {
+        closeProject();
+      }
+
+    }
+
+    document.addEventListener("keydown", (event) => {
+
+      if (event.key === "Escape") {
+        closeProject();
+      }
+
+    });
+
+
+    /* =====================================
+       COPY EMAIL
+    ===================================== */
+
+    async function copyEmail(email) {
+
+      try {
+
+        await navigator.clipboard.writeText(email);
+
+        showToast("Email berhasil disalin!");
+
+      } catch (error) {
+
+        showToast("Gagal menyalin email.");
+
+      }
+
+    }
+
+
+    /* =====================================
+       TOAST
+    ===================================== */
+
+    let toastTimer;
+
+    function showToast(message) {
+
+      const toast = document.getElementById("toast");
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2500);
+
+    }
+
+
+    /* =====================================
+       CONTACT FORM - WHATSAPP
+    ===================================== */
+
+    function handleFormSubmit(event) {
+
+      event.preventDefault();
+
+      const name = document.getElementById("senderName").value;
+
+      const email = document.getElementById("senderEmail").value;
+
+      const message = document.getElementById("senderMessage").value;
+
+      // GANTI DENGAN NOMOR WHATSAPP KAMU
+      const phone = "6285868028808";
+
+      const text =
+        `Halo Shofwan!\n\n` +
+        `Nama: ${name}\n` +
+        `Email: ${email}\n\n` +
+        `Pesan:\n${message}`;
+
+      const url =
+        `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+      window.open(url, "_blank");
+
+      event.target.reset();
+    }
+
+
+    /* =====================================
+       TRANSLATIONS
+    ===================================== */
+
+    const translations = {
+
+      id: {
+        navHome: "Beranda",
+        navAbout: "Tentang",
+        navProjects: "Projek",
+        navTech: "Teknologi",
+        navContact: "Kontak",
+
+        statusBadge: "Tersedia untuk proyek & kolaborasi",
+
+        heroDesc:
+          "Seorang pelajar yang tertarik dengan Linux, automation, infrastructure, dan web development. Saya senang belajar melalui project dan eksperimen.",
+
+        explore: "Lihat Projek",
+        contactMe: "Hubungi Saya",
+
+        aboutTitle:
+          'Tentang <span class="gradient-text">Saya</span>',
+
+        aboutSubtitle:
+          "Sedikit perkenalan tentang diri saya.",
+
+        aboutDesc:
+          "Saya adalah seorang pelajar yang memiliki ketertarikan pada dunia teknologi, khususnya Linux, automation, infrastructure, dan web development. Saya suka mempelajari hal baru dengan membangun project, mencoba berbagai tools, dan menyelesaikan masalah secara langsung.",
+
+        projectsTitle:
+          'Projek <span class="gradient-text">Saya</span>',
+
+        projectsSubtitle:
+          "Beberapa project yang pernah saya bangun.",
+
+        techTitle:
+          'Tech <span class="gradient-text">Stack</span>',
+
+        techSubtitle:
+          "Teknologi dan tools yang sedang saya pelajari.",
+
+        contactTitle:
+          'Hubungi <span class="gradient-text">Saya</span>',
+
+        contactSubtitle:
+          "Mari terhubung dan berbagi ide.",
+
+        contactHeading:
+          "Temukan saya di platform berikut",
+
+        messageTitle:
+          "Kirim Pesan",
+
+        sendMessage:
+          "Kirim Pesan",
+
+        footer:
+          "Dibuat dengan rasa ingin tahu dan semangat."
+      },
+
+      en: {
+        navHome: "Home",
+        navAbout: "About",
+        navProjects: "Projects",
+        navTech: "Tech Stack",
+        navContact: "Contact",
+
+        statusBadge:
+          "Available for projects & collaboration",
+
+        heroDesc:
+          "A student interested in Linux, automation, infrastructure, and web development. I enjoy learning through projects and experiments.",
+
+        explore: "Explore Projects",
+        contactMe: "Contact Me",
+
+        aboutTitle:
+          'About <span class="gradient-text">Me</span>',
+
+        aboutSubtitle:
+          "A little introduction about myself.",
+
+        aboutDesc:
+          "I am a student interested in technology, especially Linux, automation, infrastructure, and web development. I enjoy learning new things by building projects, exploring tools, and solving problems.",
+
+        projectsTitle:
+          'My <span class="gradient-text">Projects</span>',
+
+        projectsSubtitle:
+          "Some projects I have built.",
+
+        techTitle:
+          'Tech <span class="gradient-text">Stack</span>',
+
+        techSubtitle:
+          "Technologies and tools I am exploring.",
+
+        contactTitle:
+          'Get In <span class="gradient-text">Touch</span>',
+
+        contactSubtitle:
+          "Let's connect and share ideas.",
+
+        contactHeading:
+          "Find me on these platforms",
+
+        messageTitle:
+          "Send Me a Message",
+
+        sendMessage:
+          "Send Message",
+
+        footer:
+          "Built with curiosity and passion."
+      },
+
+      ar: {
+        navHome: "الرئيسية",
+        navAbout: "عني",
+        navProjects: "المشاريع",
+        navTech: "التقنيات",
+        navContact: "التواصل",
+
+        statusBadge:
+          "متاح للمشاريع والتعاون",
+
+        heroDesc:
+          "طالب مهتم بنظام لينكس والأتمتة والبنية التحتية وتطوير الويب. أحب التعلم من خلال المشاريع والتجارب.",
+
+        explore: "استكشف المشاريع",
+        contactMe: "تواصل معي",
+
+        aboutTitle:
+          ' <span class="gradient-text">عني</span>',
+
+        aboutSubtitle:
+          "مقدمة قصيرة عن نفسي.",
+
+        aboutDesc:
+          "أنا طالب مهتم بالتكنولوجيا، وخاصة لينكس والأتمتة والبنية التحتية وتطوير الويب. أحب تعلم أشياء جديدة من خلال بناء المشاريع وتجربة الأدوات وحل المشكلات.",
+
+        projectsTitle:
+          ' <span class="gradient-text">مشاريعي</span>',
+
+        projectsSubtitle:
+          "بعض المشاريع التي قمت ببنائها.",
+
+        techTitle:
+          ' <span class="gradient-text">التقنيات</span>',
+
+        techSubtitle:
+          "التقنيات والأدوات التي أتعلمها.",
+
+        contactTitle:
+          ' <span class="gradient-text">تواصل معي</span>',
+
+        contactSubtitle:
+          "لنتواصل ونتبادل الأفكار.",
+
+        contactHeading:
+          "يمكنك العثور علي هنا",
+
+        messageTitle:
+          "أرسل لي رسالة",
+
+        sendMessage:
+          "إرسال الرسالة",
+
+        footer:
+          "تم بناؤه بالفضول والشغف."
+      }
+
+    };
+
+
+    /* =====================================
+       LANGUAGE SWITCHER
+    ===================================== */
+
+    function setLanguage(language) {
+
+      const data = translations[language];
+
+      if (!data) return;
+
+      document.documentElement.lang = language;
+
+      document.documentElement.dir =
+        language === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+
+        const key = element.dataset.i18n;
+
+        if (data[key]) {
+          element.innerHTML = data[key];
+        }
+
+      });
+
+      localStorage.setItem("portfolioLanguage", language);
+    }
+
+    const savedLanguage =
+      localStorage.getItem("portfolioLanguage") || "id";
+
+    document.getElementById("language").value = savedLanguage;
+
+    setLanguage(savedLanguage);
+
+
+    /* =====================================
+       CURRENT YEAR
+    ===================================== */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
 
 </body>
+
 </html>
+```
