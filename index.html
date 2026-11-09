@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -8,9 +7,10 @@
   <meta name="theme-color" content="#080b18">
   <title>Shofwan | Portfolio</title>
 
-  <!-- GOOGLE FONTS -->
+  <!-- GOOGLE FONTS (Cairo untuk teks Arab) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <!-- FONT AWESOME -->
@@ -48,12 +48,20 @@
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
       transition: background .4s, color .4s;
       min-height: 100vh;
+    }
+
+    html[lang="ar"] body,
+    html[lang="ar"] button,
+    html[lang="ar"] input,
+    html[lang="ar"] textarea,
+    html[lang="ar"] select {
+      font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
     }
 
     a {
@@ -329,6 +337,7 @@
     .gradient-text {
       background: linear-gradient(100deg, var(--accent), var(--accent2));
       -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
     }
 
@@ -510,6 +519,7 @@
     .highlight p {
       color: var(--muted);
       font-size: 11px;
+      line-height: 1.7;
     }
 
     /* PROJECTS */
@@ -923,6 +933,239 @@
       font-size: 12px;
       border-top: 1px solid var(--border);
     }
+        /* BOOT SCREEN + PARTICLES */
+
+    .loader-line {
+      width: min(260px, 70%);
+    }
+
+    .loader-line::after {
+      display: none;
+    }
+
+    .loader-line span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #65d5ff, #9b8cff);
+      transition: width .35s ease;
+    }
+
+    .boot-log {
+      margin-top: 28px;
+      width: min(340px, 86%);
+      min-height: 120px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #7fe3b3;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .boot-log .ok {
+      color: #65d5ff;
+    }
+
+    .boot-percent {
+      margin-top: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #a3abc2;
+      letter-spacing: 2px;
+      direction: ltr;
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* MINI GAME */
+
+    .game-wrapper {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .game-panel,
+    .game-side {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 25px;
+      backdrop-filter: blur(15px);
+    }
+
+    .game-hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .game-hud i {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .memory-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .memory-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      width: 100%;
+    }
+
+    .memory-card {
+      position: relative;
+      aspect-ratio: 1;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      perspective: 600px;
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: transform .45s ease, box-shadow .3s, border-color .3s;
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, rgba(101, 213, 255, .18), rgba(155, 140, 255, .18));
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 20px;
+    }
+
+    .card-back {
+      background: #11182e;
+      border: 1px solid rgba(101, 213, 255, .4);
+      color: #65d5ff;
+      font-size: 30px;
+      transform: rotateY(180deg);
+    }
+
+    .memory-card.flipped .card-front {
+      transform: rotateY(180deg);
+    }
+
+    .memory-card.flipped .card-back {
+      transform: rotateY(0deg);
+    }
+
+    .memory-card.matched .card-back {
+      border-color: var(--success);
+      color: var(--success);
+      box-shadow: 0 0 18px rgba(16, 185, 129, .45);
+    }
+
+    .memory-card:hover:not(.flipped) .card-front {
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(101, 213, 255, .25);
+    }
+
+    .game-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px;
+      text-align: center;
+      border-radius: 14px;
+      background: rgba(8, 11, 24, .88);
+      backdrop-filter: blur(4px);
+      color: #f4f7ff;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .game-overlay.hide {
+      display: none;
+    }
+
+    .game-side h3 {
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    .game-side ul {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .game-side li i {
+      color: var(--accent);
+      width: 24px;
+    }
+
+    html[dir="rtl"] .game-hud i {
+      margin-right: 0;
+      margin-left: 6px;
+    }
+
+    @media (max-width: 800px) {
+      .game-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* RTL (ARAB) */
+
+    html[dir="rtl"] .project-search i {
+      left: auto;
+      right: 17px;
+    }
+
+    html[dir="rtl"] .modal-close {
+      right: auto;
+      left: 18px;
+    }
+
+    html[dir="rtl"] .modal-content h2 {
+      padding-right: 0;
+      padding-left: 25px;
+    }
+
+    html[dir="rtl"] .skill-info i {
+      margin-right: 0;
+      margin-left: 6px;
+    }
+
+    html[dir="rtl"] .typing,
+    html[dir="rtl"] .hero-title,
+    html[dir="rtl"] .logo,
+    html[dir="rtl"] .loader-logo {
+      direction: ltr;
+    }
 
     /* MOBILE */
 
@@ -1024,14 +1267,6 @@
         animation-duration: .01ms !important;
         transition-duration: .01ms !important;
       }
-
-.loader-status {
-    margin-top: 12px;
-    font-size: 8px;
-    letter-spacing: 1px;
-    animation: blink 1.5s infinite;
-}
-
     }
   </style>
 </head>
@@ -1051,9 +1286,13 @@
   <!-- PRELOADER -->
   <div id="loader">
     <div class="loader-logo">SHOFWAN</div>
-    
-    <div class="loader-line"></div>
+    <div class="boot-log" id="bootLog"></div>
+    <div class="loader-line"><span id="loaderBar"></span></div>
+    <div class="boot-percent" id="bootPercent">0%</div>
   </div>
+
+  <!-- PARTICLES -->
+  <canvas id="particles"></canvas>
 
   <!-- CURSOR -->
   <div class="cursor" id="cursor"></div>
@@ -1063,26 +1302,27 @@
     <a href="#home" class="logo">SHOFWAN.</a>
 
     <ul class="nav-links" id="navLinks">
-      <li><a href="#home" data-i18n="navHome">Home</a></li>
-      <li><a href="#about" data-i18n="navAbout">About</a></li>
-      <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
-      <li><a href="#tech" data-i18n="navTech">Tech Stack</a></li>
-      <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+      <li><a href="#home" data-i18n="navHome">Beranda</a></li>
+      <li><a href="#about" data-i18n="navAbout">Tentang</a></li>
+      <li><a href="#projects" data-i18n="navProjects">Projek</a></li>
+      <li><a href="#tech" data-i18n="navTech">Teknologi</a></li>
+      <li><a href="#game" data-i18n="navGame">Game</a></li>
+      <li><a href="#contact" data-i18n="navContact">Kontak</a></li>
     </ul>
 
     <div class="nav-actions">
 
-      <select class="control" id="language" onchange="setLanguage(this.value)">
+      <select class="control" id="language" onchange="setLanguage(this.value)" aria-label="Language">
         <option value="id">ID</option>
         <option value="en">EN</option>
         <option value="ar">AR</option>
       </select>
 
-      <button class="control" onclick="toggleTheme()" title="Ganti tema">
+      <button class="control" onclick="toggleTheme()" title="Theme" aria-label="Theme">
         <i class="fa-solid fa-circle-half-stroke"></i>
       </button>
 
-      <button class="control menu-toggle" onclick="toggleMenu()" title="Menu">
+      <button class="control menu-toggle" onclick="toggleMenu()" title="Menu" aria-label="Menu">
         <i class="fa-solid fa-bars" id="menuIcon"></i>
       </button>
 
@@ -1098,9 +1338,7 @@
 
     <div class="status-badge reveal">
       <span class="pulse-dot"></span>
-      <span data-i18n="statusBadge">
-        Available for projects & collaboration
-      </span>
+      <span data-i18n="statusBadge">Tersedia untuk proyek & kolaborasi</span>
     </div>
 
     <h1 class="hero-title reveal">
@@ -1119,17 +1357,15 @@
 
     <div class="hero-buttons reveal">
 
-      <a href="#projects" class="btn btn-primary" data-i18n="explore">
+      <a href="#projects" class="btn btn-primary">
         <i class="fa-solid fa-code"></i>
-        Explore Projects
+        <span data-i18n="explore">Lihat Projek</span>
       </a>
 
-      <a href="#contact" class="btn btn-outline" data-i18n="contactMe">
+      <a href="#contact" class="btn btn-outline">
         <i class="fa-solid fa-paper-plane"></i>
-        Contact Me
+        <span data-i18n="contactMe">Hubungi Saya</span>
       </a>
-
-      
 
     </div>
   </section>
@@ -1138,11 +1374,11 @@
   <section id="about">
 
     <h2 class="section-title reveal" data-i18n="aboutTitle">
-      About <span class="gradient-text">Me</span>
+      Tentang <span class="gradient-text">Saya</span>
     </h2>
 
     <p class="section-subtitle reveal" data-i18n="aboutSubtitle">
-      A little introduction about myself.
+      Sedikit perkenalan tentang diri saya.
     </p>
 
     <div class="about-card reveal" data-i18n="aboutDesc">
@@ -1158,19 +1394,19 @@
       <div class="highlight">
         <i class="fa-brands fa-linux"></i>
         <h3>Linux Enthusiast</h3>
-        <p>Exploring Linux and system administration.</p>
+        <p data-i18n="hl1Desc">Mengeksplorasi Linux dan administrasi sistem.</p>
       </div>
 
       <div class="highlight">
         <i class="fa-solid fa-code"></i>
         <h3>Web Development</h3>
-        <p>Building websites and interactive applications.</p>
+        <p data-i18n="hl2Desc">Membangun website dan aplikasi interaktif.</p>
       </div>
 
       <div class="highlight">
         <i class="fa-solid fa-gears"></i>
         <h3>Automation</h3>
-        <p>Learning automation and infrastructure.</p>
+        <p data-i18n="hl3Desc">Mempelajari automation dan infrastructure.</p>
       </div>
 
     </div>
@@ -1181,117 +1417,86 @@
   <section id="projects">
 
     <h2 class="section-title reveal" data-i18n="projectsTitle">
-      My <span class="gradient-text">Projects</span>
+      Projek <span class="gradient-text">Saya</span>
     </h2>
 
     <p class="section-subtitle reveal" data-i18n="projectsSubtitle">
-      Some projects I have built.
+      Beberapa project yang pernah saya bangun.
     </p>
 
     <!-- FILTER -->
     <div class="filter-container reveal">
 
-      <button class="filter-btn active" data-filter="all" onclick="filterProjects('all', this)">All</button>
+      <button class="filter-btn active" data-filter="all" onclick="filterProjects('all', this)"
+        data-i18n="filterAll">Semua</button>
 
-      <button class="filter-btn" data-filter="linux" onclick="filterProjects('linux', this)">Linux & SysAdmin</button>
+      <button class="filter-btn" data-filter="linux" onclick="filterProjects('linux', this)"
+        data-i18n="filterLinux">Linux & SysAdmin</button>
 
-      <button class="filter-btn" data-filter="web" onclick="filterProjects('web', this)">Web Development</button>
+      <button class="filter-btn" data-filter="web" onclick="filterProjects('web', this)"
+        data-i18n="filterWeb">Pengembangan Web</button>
 
     </div>
 
     <!-- SEARCH -->
     <div class="project-search reveal">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="projectSearch" placeholder="Search projects..." oninput="searchProjects()">
+      <input type="text" id="projectSearch" data-i18n-placeholder="searchPlaceholder"
+        placeholder="Cari projek..." oninput="searchProjects()">
     </div>
 
     <!-- PROJECT GRID -->
     <div class="project-grid">
 
       <div class="project-card reveal" data-category="linux" onclick="openProject(0)">
-
-        <div class="project-icon">
-          <i class="fa-brands fa-linux"></i>
-        </div>
-
+        <div class="project-icon"><i class="fa-brands fa-linux"></i></div>
         <h3>Linux Automation</h3>
-
-        <p>
-          Automasi sederhana menggunakan Linux, Bash,
-          systemd service, dan timer.
+        <p data-i18n="proj0Short">
+          Automasi sederhana menggunakan Linux, Bash, systemd service, dan timer.
         </p>
-
-        <span class="project-hint">View Details →</span>
+        <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
       <div class="project-card reveal" data-category="web" onclick="openProject(1)">
-
-        <div class="project-icon">
-          <i class="fa-solid fa-photo-film"></i>
-        </div>
-
+        <div class="project-icon"><i class="fa-solid fa-photo-film"></i></div>
         <h3>Binar Multimedia</h3>
-
-        <p>
-          Website penyewaan peralatan audiovisual
-          dengan katalog dan sistem peminjaman.
+        <p data-i18n="proj1Short">
+          Website penyewaan peralatan audiovisual dengan katalog dan sistem peminjaman.
         </p>
-
-        <span class="project-hint">View Details →</span>
+        <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
       <div class="project-card featured reveal" data-category="web" onclick="openProject(2)">
-
-        <div class="project-icon">
-          <i class="fa-solid fa-envelope-open-text"></i>
-        </div>
-
+        <div class="project-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
         <h3>Digital Wedding Invitation</h3>
-
-        <p>
-          Website undangan pernikahan Shofwan & Safira
-          dengan slideshow, countdown, musik, RSVP,
-          dan buku ucapan.
+        <p data-i18n="proj2Short">
+          Website undangan pernikahan Shofwan & Safira dengan slideshow, countdown,
+          musik, RSVP, dan buku ucapan.
         </p>
-
-        <span class="project-hint">View Details →</span>
+        <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
       <div class="project-card reveal" data-category="web" onclick="openProject(3)">
-
-        <div class="project-icon">
-          <i class="fa-solid fa-box-open"></i>
-        </div>
-
+        <div class="project-icon"><i class="fa-solid fa-box-open"></i></div>
         <h3>PinjamYuk</h3>
-
-        <p>
-          Aplikasi pengelolaan inventaris barang,
-          peminjaman, dan pengembalian.
+        <p data-i18n="proj3Short">
+          Aplikasi pengelolaan inventaris barang, peminjaman, dan pengembalian.
         </p>
-
-        <span class="project-hint">View Details →</span>
+        <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
       <div class="project-card reveal" data-category="web" onclick="openProject(4)">
-
-        <div class="project-icon">
-          <i class="fa-solid fa-compact-disc"></i>
-        </div>
-
+        <div class="project-icon"><i class="fa-solid fa-compact-disc"></i></div>
         <h3>Music Background Player</h3>
-
-        <p>
-          Website pemutar musik dengan tampilan record player,
-          playlist, dan fitur lirik lagu.
+        <p data-i18n="proj4Short">
+          Website pemutar musik dengan tampilan record player, playlist, dan fitur lirik lagu.
         </p>
-
-        <span class="project-hint">View Details →</span>
+        <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
       <div id="emptyProjects">
         <i class="fa-solid fa-folder-open"></i>
-        <p>No projects found.</p>
+        <p data-i18n="noProjects">Projek tidak ditemukan.</p>
       </div>
 
     </div>
@@ -1306,7 +1511,7 @@
     </h2>
 
     <p class="section-subtitle reveal" data-i18n="techSubtitle">
-      Technologies and tools I explore.
+      Teknologi dan tools yang sedang saya pelajari.
     </p>
 
     <div class="skills-grid reveal">
@@ -1316,9 +1521,7 @@
           <span><i class="fa-brands fa-linux"></i> Linux & Bash</span>
           <span>85%</span>
         </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-progress="85%"></div>
-        </div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="85%"></div></div>
       </div>
 
       <div class="skill-card">
@@ -1326,9 +1529,7 @@
           <span><i class="fa-brands fa-html5"></i> HTML & CSS</span>
           <span>90%</span>
         </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-progress="90%"></div>
-        </div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="90%"></div></div>
       </div>
 
       <div class="skill-card">
@@ -1336,9 +1537,7 @@
           <span><i class="fa-brands fa-js"></i> JavaScript</span>
           <span>75%</span>
         </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-progress="75%"></div>
-        </div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="75%"></div></div>
       </div>
 
       <div class="skill-card">
@@ -1346,9 +1545,7 @@
           <span><i class="fa-brands fa-java"></i> Java</span>
           <span>65%</span>
         </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-progress="65%"></div>
-        </div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="65%"></div></div>
       </div>
 
       <div class="skill-card">
@@ -1356,9 +1553,7 @@
           <span><i class="fa-solid fa-server"></i> Systemd & Server</span>
           <span>80%</span>
         </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-progress="80%"></div>
-        </div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="80%"></div></div>
       </div>
 
       <div class="skill-card">
@@ -1366,9 +1561,59 @@
           <span><i class="fa-brands fa-git-alt"></i> Git & GitHub</span>
           <span>75%</span>
         </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-progress="75%"></div>
+        <div class="skill-bar"><div class="skill-progress" data-progress="75%"></div></div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MINI GAME -->
+  <section id="game">
+
+    <h2 class="section-title reveal" data-i18n="gameTitle">
+      Mini <span class="gradient-text">Game</span>
+    </h2>
+
+    <p class="section-subtitle reveal" data-i18n="gameSubtitle">
+      Istirahat sejenak — cocokkan ikon teknologi dan uji daya ingatmu!
+    </p>
+
+    <div class="game-wrapper reveal">
+
+      <div class="game-panel">
+
+        <div class="game-hud">
+          <span><i class="fa-solid fa-hand-pointer"></i><span data-i18n="gameMoves">Langkah</span>: <b id="gameMoves">0</b></span>
+          <span><i class="fa-solid fa-clock"></i><b id="gameTime">0</b>s</span>
+          <span><i class="fa-solid fa-trophy"></i><span data-i18n="gameBest">Terbaik</span>: <b id="gameBest">-</b></span>
+          <button class="control" onclick="memory.reset()" aria-label="Restart">
+            <i class="fa-solid fa-rotate-right" style="margin:0"></i>
+          </button>
         </div>
+
+        <div class="memory-wrap">
+          <div class="memory-board" id="memoryBoard"></div>
+
+          <div class="game-overlay hide" id="gameWin">
+            <p id="gameWinMsg"></p>
+            <button class="btn btn-primary" onclick="memory.reset()">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span data-i18n="gameRestart">Main Lagi</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="game-side">
+        <h3 data-i18n="gameHowTitle">Cara Bermain</h3>
+        <ul>
+          <li><i class="fa-solid fa-hand-pointer"></i><span data-i18n="gameHow1">Klik kartu untuk membukanya</span></li>
+          <li><i class="fa-solid fa-clone"></i><span data-i18n="gameHow2">Cocokkan dua ikon yang sama</span></li>
+          <li><i class="fa-solid fa-bullseye"></i><span data-i18n="gameHow3">Selesaikan dengan langkah sesedikit mungkin</span></li>
+          <li><i class="fa-solid fa-rotate-right"></i><span data-i18n="gameHow4">Tombol ↻ untuk mengacak ulang</span></li>
+        </ul>
       </div>
 
     </div>
@@ -1379,11 +1624,11 @@
   <section id="contact">
 
     <h2 class="section-title reveal" data-i18n="contactTitle">
-      Get In <span class="gradient-text">Touch</span>
+      Hubungi <span class="gradient-text">Saya</span>
     </h2>
 
     <p class="section-subtitle reveal" data-i18n="contactSubtitle">
-      Let's connect and share ideas.
+      Mari terhubung dan berbagi ide.
     </p>
 
     <div class="contact-wrapper">
@@ -1391,11 +1636,9 @@
       <!-- SOCIAL LINKS -->
       <div class="contact-card reveal">
 
-        <h3 data-i18n="contactHeading">
-          Find me on these platforms
-        </h3>
+        <h3 data-i18n="contactHeading">Temukan saya di platform berikut</h3>
 
-        <p>
+        <p data-i18n="contactDesc">
           Tertarik untuk berkolaborasi atau sekadar
           berbagi ide? Hubungi saya melalui platform berikut.
         </p>
@@ -1420,7 +1663,8 @@
             <i class="fa-brands fa-whatsapp"></i>
           </a>
 
-          <button class="copy-btn" onclick="copyEmail('EMAIL_KAMU@example.com')" title="Copy Email">
+          <button class="copy-btn" onclick="copyEmail('EMAIL_KAMU@example.com')" title="Copy Email"
+            aria-label="Copy Email">
             <i class="fa-solid fa-copy"></i>
           </button>
 
@@ -1431,15 +1675,18 @@
       <!-- CONTACT FORM -->
       <div class="contact-card reveal">
 
-        <h3 data-i18n="messageTitle">Send Me a Message</h3>
+        <h3 data-i18n="messageTitle">Kirim Pesan</h3>
 
         <form class="contact-form" onsubmit="handleFormSubmit(event)">
 
-          <input type="text" id="senderName" placeholder="Nama Anda" required>
+          <input type="text" id="senderName" data-i18n-placeholder="namePlaceholder" placeholder="Nama Anda"
+            required>
 
-          <input type="email" id="senderEmail" placeholder="Email Anda" required>
+          <input type="email" id="senderEmail" data-i18n-placeholder="emailPlaceholder" placeholder="Email Anda"
+            required>
 
-          <textarea id="senderMessage" rows="4" placeholder="Tulis pesan..." required></textarea>
+          <textarea id="senderMessage" rows="4" data-i18n-placeholder="messagePlaceholder"
+            placeholder="Tulis pesan..." required></textarea>
 
           <button type="submit" class="btn btn-primary">
             <i class="fa-solid fa-paper-plane"></i>
@@ -1457,9 +1704,7 @@
   <!-- FOOTER -->
   <footer>
     © <span id="year"></span> Shofwan.
-    <span data-i18n="footer">
-      Built with curiosity and passion.
-    </span>
+    <span data-i18n="footer">Dibuat dengan rasa ingin tahu dan semangat.</span>
   </footer>
 
   <!-- BACK TO TOP -->
@@ -1475,7 +1720,7 @@
 
     <div class="modal-content">
 
-      <button class="modal-close" onclick="closeProject()">
+      <button class="modal-close" onclick="closeProject()" aria-label="Close">
         &times;
       </button>
 
@@ -1494,7 +1739,7 @@
 
         <a id="projectDemo" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          Live Demo
+          <span data-i18n="liveDemo">Demo Langsung</span>
         </a>
 
       </div>
@@ -1502,90 +1747,47 @@
     </div>
 
   </div>
-
-  <script>
+    <script>
 
     /* =====================================
        PROJECT DATA
+       (judul tetap; deskripsi diambil dari
+        translations sesuai bahasa aktif)
     ===================================== */
 
     const projects = [
       {
         title: "Linux Automation",
-        description:
-          "Project automasi sederhana di Linux menggunakan Bash dan systemd service serta timer. Salah satu eksperimennya adalah membuat jadwal auto-shutdown otomatis setiap malam.",
-
-        technologies: [
-          "Linux",
-          "Systemd",
-          "Bash",
-          "Terminal"
-        ],
-
+        descKey: "proj0Long",
+        technologies: ["Linux", "Systemd", "Bash", "Terminal"],
         github: "",
         demo: ""
       },
-
       {
         title: "Binar Multimedia",
-        description:
-          "Website penyewaan peralatan audiovisual yang menyediakan katalog produk, detail peralatan, informasi stok, dan sistem keranjang peminjaman.",
-
-        technologies: [
-          "HTML",
-          "CSS",
-          "JavaScript",
-          "Node.js"
-        ],
-
+        descKey: "proj1Long",
+        technologies: ["HTML", "CSS", "JavaScript", "Node.js"],
         github: "",
         demo: ""
       },
-
       {
         title: "Digital Wedding Invitation",
-        description:
-          "Website undangan pernikahan digital Shofwan & Safira. Memiliki slideshow foto, countdown pernikahan, musik, RSVP, serta buku ucapan yang terintegrasi dengan Firebase dan Firestore.",
-
-        technologies: [
-          "HTML",
-          "CSS",
-          "JavaScript",
-          "Firebase",
-          "Firestore"
-        ],
-
+        descKey: "proj2Long",
+        technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Firestore"],
         github: "https://github.com/shofwan77/UndanganPernikahan",
         demo: ""
       },
-
       {
         title: "PinjamYuk",
-        description:
-          "Aplikasi pengelolaan inventaris dan peminjaman barang. Memiliki fitur daftar barang, pencatatan peminjaman, dan pengembalian barang.",
-
-        technologies: [
-          "HTML",
-          "CSS",
-          "JavaScript",
-          "Node.js"
-        ],
-
+        descKey: "proj3Long",
+        technologies: ["HTML", "CSS", "JavaScript", "Node.js"],
         github: "",
         demo: ""
       },
-
       {
         title: "Music Background Player",
-        description:
-          "Website pemutar musik dengan desain record player, panel playlist, pemutaran musik, dan fitur tampilan lirik lagu.",
-
-        technologies: [
-          "HTML",
-          "CSS",
-          "JavaScript"
-        ],
-
+        descKey: "proj4Long",
+        technologies: ["HTML", "CSS", "JavaScript"],
         github: "",
         demo: ""
       }
@@ -1593,14 +1795,419 @@
 
 
     /* =====================================
+       TRANSLATIONS
+    ===================================== */
+
+    const translations = {
+
+      id: {
+        navHome: "Beranda",
+        navAbout: "Tentang",
+        navProjects: "Projek",
+        navTech: "Teknologi",
+        navContact: "Kontak",
+        navGame: "Game",
+
+        gameTitle: 'Mini <span class="gradient-text">Game</span>',
+        gameSubtitle: "Istirahat sejenak — cocokkan ikon teknologi dan uji daya ingatmu!",
+        gameMoves: "Langkah",
+        gameBest: "Terbaik",
+        gameWin: "Selamat! Semua pasangan cocok!",
+        gameRestart: "Main Lagi",
+        newBest: "Rekor baru!",
+        gameHowTitle: "Cara Bermain",
+        gameHow1: "Klik kartu untuk membukanya",
+        gameHow2: "Cocokkan dua ikon yang sama",
+        gameHow3: "Selesaikan dengan langkah sesedikit mungkin",
+        gameHow4: "Tombol ↻ untuk mengacak ulang",
+        welcomeToast: "Selamat datang di portfolio saya! 👋",
+
+        statusBadge: "Tersedia untuk proyek & kolaborasi",
+
+        heroDesc:
+          "Seorang pelajar yang tertarik dengan Linux, automation, infrastructure, dan web development. Saya senang belajar melalui project dan eksperimen.",
+
+        explore: "Lihat Projek",
+        contactMe: "Hubungi Saya",
+
+        aboutTitle: 'Tentang <span class="gradient-text">Saya</span>',
+        aboutSubtitle: "Sedikit perkenalan tentang diri saya.",
+        aboutDesc:
+          "Saya adalah seorang pelajar yang memiliki ketertarikan pada dunia teknologi, khususnya Linux, automation, infrastructure, dan web development. Saya suka mempelajari hal baru dengan membangun project, mencoba berbagai tools, dan menyelesaikan masalah secara langsung.",
+
+        hl1Desc: "Mengeksplorasi Linux dan administrasi sistem.",
+        hl2Desc: "Membangun website dan aplikasi interaktif.",
+        hl3Desc: "Mempelajari automation dan infrastructure.",
+
+        projectsTitle: 'Projek <span class="gradient-text">Saya</span>',
+        projectsSubtitle: "Beberapa project yang pernah saya bangun.",
+
+        filterAll: "Semua",
+        filterLinux: "Linux & SysAdmin",
+        filterWeb: "Pengembangan Web",
+        searchPlaceholder: "Cari projek...",
+        noProjects: "Projek tidak ditemukan.",
+        viewDetails: "Lihat Detail →",
+        liveDemo: "Demo Langsung",
+
+        proj0Short: "Automasi sederhana menggunakan Linux, Bash, systemd service, dan timer.",
+        proj0Long: "Project automasi sederhana di Linux menggunakan Bash dan systemd service serta timer. Salah satu eksperimennya adalah membuat jadwal auto-shutdown otomatis setiap malam.",
+
+        proj1Short: "Website penyewaan peralatan audiovisual dengan katalog dan sistem peminjaman.",
+        proj1Long: "Website penyewaan peralatan audiovisual yang menyediakan katalog produk, detail peralatan, informasi stok, dan sistem keranjang peminjaman.",
+
+        proj2Short: "Website undangan pernikahan Shofwan & Safira dengan slideshow, countdown, musik, RSVP, dan buku ucapan.",
+        proj2Long: "Website undangan pernikahan digital Shofwan & Safira. Memiliki slideshow foto, countdown pernikahan, musik, RSVP, serta buku ucapan yang terintegrasi dengan Firebase dan Firestore.",
+
+        proj3Short: "Aplikasi pengelolaan inventaris barang, peminjaman, dan pengembalian.",
+        proj3Long: "Aplikasi pengelolaan inventaris dan peminjaman barang. Memiliki fitur daftar barang, pencatatan peminjaman, dan pengembalian barang.",
+
+        proj4Short: "Website pemutar musik dengan tampilan record player, playlist, dan fitur lirik lagu.",
+        proj4Long: "Website pemutar musik dengan desain record player, panel playlist, pemutaran musik, dan fitur tampilan lirik lagu.",
+
+        techTitle: 'Tech <span class="gradient-text">Stack</span>',
+        techSubtitle: "Teknologi dan tools yang sedang saya pelajari.",
+
+        contactTitle: 'Hubungi <span class="gradient-text">Saya</span>',
+        contactSubtitle: "Mari terhubung dan berbagi ide.",
+        contactHeading: "Temukan saya di platform berikut",
+        contactDesc: "Tertarik untuk berkolaborasi atau sekadar berbagi ide? Hubungi saya melalui platform berikut.",
+
+        messageTitle: "Kirim Pesan",
+        namePlaceholder: "Nama Anda",
+        emailPlaceholder: "Email Anda",
+        messagePlaceholder: "Tulis pesan...",
+        sendMessage: "Kirim Pesan",
+
+        toastCopied: "Email berhasil disalin!",
+        toastFailed: "Gagal menyalin email.",
+
+        footer: "Dibuat dengan rasa ingin tahu dan semangat."
+      },
+
+      en: {
+        navHome: "Home",
+        navAbout: "About",
+        navProjects: "Projects",
+        navTech: "Tech Stack",
+        navContact: "Contact",
+        navGame: "Game",
+
+        gameTitle: 'Mini <span class="gradient-text">Game</span>',
+        gameSubtitle: "Take a short break — match the tech icons and test your memory!",
+        gameMoves: "Moves",
+        gameBest: "Best",
+        gameWin: "Well done! All pairs matched!",
+        gameRestart: "Play Again",
+        newBest: "New record!",
+        gameHowTitle: "How to Play",
+        gameHow1: "Click a card to flip it",
+        gameHow2: "Match two identical icons",
+        gameHow3: "Finish in as few moves as you can",
+        gameHow4: "Use the ↻ button to reshuffle",
+        welcomeToast: "Welcome to my portfolio! 👋",
+
+        statusBadge: "Available for projects & collaboration",
+
+        heroDesc:
+          "A student interested in Linux, automation, infrastructure, and web development. I enjoy learning through projects and experiments.",
+
+        explore: "Explore Projects",
+        contactMe: "Contact Me",
+
+        aboutTitle: 'About <span class="gradient-text">Me</span>',
+        aboutSubtitle: "A little introduction about myself.",
+        aboutDesc:
+          "I am a student interested in technology, especially Linux, automation, infrastructure, and web development. I enjoy learning new things by building projects, exploring tools, and solving problems hands-on.",
+
+        hl1Desc: "Exploring Linux and system administration.",
+        hl2Desc: "Building websites and interactive applications.",
+        hl3Desc: "Learning automation and infrastructure.",
+
+        projectsTitle: 'My <span class="gradient-text">Projects</span>',
+        projectsSubtitle: "Some projects I have built.",
+
+        filterAll: "All",
+        filterLinux: "Linux & SysAdmin",
+        filterWeb: "Web Development",
+        searchPlaceholder: "Search projects...",
+        noProjects: "No projects found.",
+        viewDetails: "View Details →",
+        liveDemo: "Live Demo",
+
+        proj0Short: "Simple automation using Linux, Bash, systemd services, and timers.",
+        proj0Long: "A simple Linux automation project using Bash and systemd services and timers. One of the experiments was setting up an automatic shutdown schedule every night.",
+
+        proj1Short: "An audiovisual equipment rental website with a catalog and borrowing system.",
+        proj1Long: "An audiovisual equipment rental website featuring a product catalog, equipment details, stock information, and a borrowing cart system.",
+
+        proj2Short: "Shofwan & Safira's wedding invitation website with a slideshow, countdown, music, RSVP, and guestbook.",
+        proj2Long: "A digital wedding invitation website for Shofwan & Safira. It features a photo slideshow, a wedding countdown, music, RSVP, and a guestbook integrated with Firebase and Firestore.",
+
+        proj3Short: "An application for managing inventory, borrowing, and returns.",
+        proj3Long: "An inventory and item-borrowing management application. It features an item list, borrowing records, and item returns.",
+
+        proj4Short: "A music player website with a record player design, playlist, and lyrics display.",
+        proj4Long: "A music player website with a record player design, a playlist panel, music playback, and a song lyrics display feature.",
+
+        techTitle: 'Tech <span class="gradient-text">Stack</span>',
+        techSubtitle: "Technologies and tools I am exploring.",
+
+        contactTitle: 'Get In <span class="gradient-text">Touch</span>',
+        contactSubtitle: "Let's connect and share ideas.",
+        contactHeading: "Find me on these platforms",
+        contactDesc: "Interested in collaborating or just sharing ideas? Reach out to me through the platforms below.",
+
+        messageTitle: "Send Me a Message",
+        namePlaceholder: "Your name",
+        emailPlaceholder: "Your email",
+        messagePlaceholder: "Write a message...",
+        sendMessage: "Send Message",
+
+        toastCopied: "Email copied successfully!",
+        toastFailed: "Failed to copy email.",
+
+        footer: "Built with curiosity and passion."
+      },
+
+      ar: {
+        navHome: "الرئيسية",
+        navAbout: "عني",
+        navProjects: "المشاريع",
+        navTech: "التقنيات",
+        navContact: "التواصل",
+        navGame: "لعبة",
+
+        gameTitle: '<span class="gradient-text">لعبة صغيرة</span>',
+        gameSubtitle: "خذ استراحة قصيرة — طابق أيقونات التقنية واختبر ذاكرتك!",
+        gameMoves: "الحركات",
+        gameBest: "الأفضل",
+        gameWin: "أحسنت! تمت مطابقة جميع الأزواج!",
+        gameRestart: "العب مجددًا",
+        newBest: "رقم قياسي جديد!",
+        gameHowTitle: "طريقة اللعب",
+        gameHow1: "اضغط على البطاقة لقلبها",
+        gameHow2: "طابق أيقونتين متطابقتين",
+        gameHow3: "أنهِ اللعبة بأقل عدد ممكن من الحركات",
+        gameHow4: "استخدم زر ↻ لإعادة الخلط",
+        welcomeToast: "مرحبًا بك في موقعي! 👋",
+
+        statusBadge: "متاح للمشاريع والتعاون",
+
+        heroDesc:
+          "طالب مهتم بنظام لينكس والأتمتة والبنية التحتية وتطوير الويب. أحب التعلم من خلال المشاريع والتجارب.",
+
+        explore: "استكشف المشاريع",
+        contactMe: "تواصل معي",
+
+        aboutTitle: '<span class="gradient-text">عني</span>',
+        aboutSubtitle: "مقدمة قصيرة عن نفسي.",
+        aboutDesc:
+          "أنا طالب مهتم بالتكنولوجيا، وخاصة لينكس والأتمتة والبنية التحتية وتطوير الويب. أحب تعلم أشياء جديدة من خلال بناء المشاريع وتجربة الأدوات وحل المشكلات بشكل مباشر.",
+
+        hl1Desc: "استكشاف لينكس وإدارة الأنظمة.",
+        hl2Desc: "بناء مواقع وتطبيقات تفاعلية.",
+        hl3Desc: "تعلّم الأتمتة والبنية التحتية.",
+
+        projectsTitle: '<span class="gradient-text">مشاريعي</span>',
+        projectsSubtitle: "بعض المشاريع التي قمت ببنائها.",
+
+        filterAll: "الكل",
+        filterLinux: "لينكس وإدارة الأنظمة",
+        filterWeb: "تطوير الويب",
+        searchPlaceholder: "ابحث في المشاريع...",
+        noProjects: "لم يتم العثور على مشاريع.",
+        viewDetails: "عرض التفاصيل ←",
+        liveDemo: "عرض مباشر",
+
+        proj0Short: "أتمتة بسيطة باستخدام لينكس وBash وخدمات systemd والمؤقتات.",
+        proj0Long: "مشروع أتمتة بسيط على لينكس باستخدام Bash وخدمات systemd والمؤقتات. من أبرز التجارب إنشاء جدول إيقاف تشغيل تلقائي كل ليلة.",
+
+        proj1Short: "موقع لتأجير معدات الصوت والفيديو مع كتالوج ونظام استعارة.",
+        proj1Long: "موقع لتأجير معدات الصوت والفيديو يوفر كتالوج المنتجات وتفاصيل المعدات ومعلومات المخزون ونظام سلة للاستعارة.",
+
+        proj2Short: "موقع دعوة زفاف شفوان وسفيرا مع عرض صور وعدّ تنازلي وموسيقى وتأكيد الحضور ودفتر التهاني.",
+        proj2Long: "موقع دعوة زفاف رقمية لشفوان وسفيرا. يتضمن عرض صور وعدًّا تنازليًا للزفاف وموسيقى وتأكيد الحضور ودفتر تهاني متكاملًا مع Firebase وFirestore.",
+
+        proj3Short: "تطبيق لإدارة المخزون والاستعارة والإرجاع.",
+        proj3Long: "تطبيق لإدارة المخزون واستعارة الأغراض. يتضمن قائمة الأغراض وتسجيل الاستعارة وإرجاع الأغراض.",
+
+        proj4Short: "موقع مشغّل موسيقى بتصميم جهاز تسجيل مع قائمة تشغيل وعرض كلمات الأغاني.",
+        proj4Long: "موقع مشغّل موسيقى بتصميم جهاز تسجيل وقائمة تشغيل وتشغيل للموسيقى وميزة عرض كلمات الأغاني.",
+
+        techTitle: '<span class="gradient-text">التقنيات</span>',
+        techSubtitle: "التقنيات والأدوات التي أتعلمها.",
+
+        contactTitle: '<span class="gradient-text">تواصل معي</span>',
+        contactSubtitle: "لنتواصل ونتبادل الأفكار.",
+        contactHeading: "يمكنك العثور علي هنا",
+        contactDesc: "هل ترغب في التعاون أو تبادل الأفكار؟ تواصل معي عبر المنصات التالية.",
+
+        messageTitle: "أرسل لي رسالة",
+        namePlaceholder: "اسمك",
+        emailPlaceholder: "بريدك الإلكتروني",
+        messagePlaceholder: "اكتب رسالتك...",
+        sendMessage: "إرسال الرسالة",
+
+        toastCopied: "تم نسخ البريد الإلكتروني بنجاح!",
+        toastFailed: "تعذّر نسخ البريد الإلكتروني.",
+
+        footer: "تم بناؤه بالفضول والشغف."
+      }
+
+    };
+
+    let currentLanguage = "id";
+    let currentProjectIndex = null;
+
+    function t(key) {
+      const data = translations[currentLanguage] || translations.id;
+      return data[key] !== undefined ? data[key] : (translations.id[key] || "");
+    }
+
+    /* =====================================
        PRELOADER
     ===================================== */
 
+    let pageLoaded = false;
+    let bootDone = false;
+
+    function hideLoader() {
+
+      if (!(pageLoaded && bootDone)) return;
+
+      document.getElementById("loader").classList.add("hide");
+
+      setTimeout(() => showToast(t("welcomeToast")), 700);
+    }
+
     window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("loader").classList.add("hide");
-      }, 800);
+      pageLoaded = true;
+      hideLoader();
     });
+
+    (function bootSequence() {
+
+      const log = document.getElementById("bootLog");
+      const bar = document.getElementById("loaderBar");
+      const percent = document.getElementById("bootPercent");
+
+      const lines = [
+        "booting shofwan.os ...",
+        "loading kernel modules",
+        "mounting /home/shofwan",
+        "starting systemd services",
+        "launching portfolio.service"
+      ];
+
+      let i = 0;
+
+      function next() {
+
+        if (i >= lines.length) {
+          log.insertAdjacentHTML("beforeend", "<div class='ok'>&gt; welcome.</div>");
+          setTimeout(() => {
+            bootDone = true;
+            hideLoader();
+          }, 450);
+          return;
+        }
+
+        const status = i === 0 ? "" : " <span class='ok'>[ OK ]</span>";
+
+        log.insertAdjacentHTML("beforeend", "<div>&gt; " + lines[i] + status + "</div>");
+
+        const value = Math.round(((i + 1) / lines.length) * 100);
+        bar.style.width = value + "%";
+        percent.textContent = value + "%";
+
+        i++;
+        setTimeout(next, 420);
+      }
+
+      setTimeout(next, 250);
+
+    })();
+
+
+    /* =====================================
+       PARTICLES BACKGROUND
+    ===================================== */
+
+    (function particles() {
+
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      let w, h, dots = [];
+
+      function resize() {
+
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+
+        const count = Math.min(70, Math.floor(w / 22));
+
+        dots = Array.from({ length: count }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - .5) * .35,
+          vy: (Math.random() - .5) * .35,
+          r: Math.random() * 1.6 + .6
+        }));
+      }
+
+      resize();
+      window.addEventListener("resize", resize);
+
+      function frame() {
+
+        ctx.clearRect(0, 0, w, h);
+
+        const rgb = document.body.classList.contains("light")
+          ? "8,126,174"
+          : "101,213,255";
+
+        dots.forEach((d, i) => {
+
+          d.x += d.vx;
+          d.y += d.vy;
+
+          if (d.x < 0 || d.x > w) d.vx *= -1;
+          if (d.y < 0 || d.y > h) d.vy *= -1;
+
+          ctx.fillStyle = `rgba(${rgb},.55)`;
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+          ctx.fill();
+
+          for (let j = i + 1; j < dots.length; j++) {
+
+            const o = dots[j];
+            const dx = d.x - o.x;
+            const dy = d.y - o.y;
+            const dist = dx * dx + dy * dy;
+
+            if (dist < 14000) {
+              ctx.strokeStyle = `rgba(${rgb},${.14 * (1 - dist / 14000)})`;
+              ctx.beginPath();
+              ctx.moveTo(d.x, d.y);
+              ctx.lineTo(o.x, o.y);
+              ctx.stroke();
+            }
+
+          }
+
+        });
+
+        requestAnimationFrame(frame);
+      }
+
+      frame();
+
+    })();
 
 
     /* =====================================
@@ -1859,15 +2466,18 @@
        PROJECT MODAL
     ===================================== */
 
-    function openProject(index) {
+    function renderProjectModal() {
 
-      const project = projects[index];
+      if (currentProjectIndex === null) return;
 
+      const project = projects[currentProjectIndex];
+
+      // Judul tetap, deskripsi mengikuti bahasa
       document.getElementById("modalTitle").textContent =
         project.title;
 
       document.getElementById("modalDescription").textContent =
-        project.description;
+        t(project.descKey);
 
       document.getElementById("modalTech").innerHTML =
         project.technologies
@@ -1885,6 +2495,13 @@
 
       demo.style.display =
         project.demo ? "inline-flex" : "none";
+    }
+
+    function openProject(index) {
+
+      currentProjectIndex = index;
+
+      renderProjectModal();
 
       document.getElementById("projectModal").classList.add("show");
 
@@ -1892,6 +2509,8 @@
     }
 
     function closeProject() {
+
+      currentProjectIndex = null;
 
       document.getElementById("projectModal").classList.remove("show");
 
@@ -1925,11 +2544,11 @@
 
         await navigator.clipboard.writeText(email);
 
-        showToast("Email berhasil disalin!");
+        showToast(t("toastCopied"));
 
       } catch (error) {
 
-        showToast("Gagal menyalin email.");
+        showToast(t("toastFailed"));
 
       }
 
@@ -1992,182 +2611,6 @@
 
 
     /* =====================================
-       TRANSLATIONS
-    ===================================== */
-
-    const translations = {
-
-      id: {
-        navHome: "Beranda",
-        navAbout: "Tentang",
-        navProjects: "Projek",
-        navTech: "Teknologi",
-        navContact: "Kontak",
-
-        statusBadge: "Tersedia untuk proyek & kolaborasi",
-
-        heroDesc:
-          "Seorang pelajar yang tertarik dengan Linux, automation, infrastructure, dan web development. Saya senang belajar melalui project dan eksperimen.",
-
-        explore: "Lihat Projek",
-        contactMe: "Hubungi Saya",
-
-        aboutTitle:
-          'Tentang <span class="gradient-text">Saya</span>',
-
-        aboutSubtitle:
-          "Sedikit perkenalan tentang diri saya.",
-
-        aboutDesc:
-          "Saya adalah seorang pelajar yang memiliki ketertarikan pada dunia teknologi, khususnya Linux, automation, infrastructure, dan web development. Saya suka mempelajari hal baru dengan membangun project, mencoba berbagai tools, dan menyelesaikan masalah secara langsung.",
-
-        projectsTitle:
-          'Projek <span class="gradient-text">Saya</span>',
-
-        projectsSubtitle:
-          "Beberapa project yang pernah saya bangun.",
-
-        techTitle:
-          'Tech <span class="gradient-text">Stack</span>',
-
-        techSubtitle:
-          "Teknologi dan tools yang sedang saya pelajari.",
-
-        contactTitle:
-          'Hubungi <span class="gradient-text">Saya</span>',
-
-        contactSubtitle:
-          "Mari terhubung dan berbagi ide.",
-
-        contactHeading:
-          "Temukan saya di platform berikut",
-
-        messageTitle:
-          "Kirim Pesan",
-
-        sendMessage:
-          "Kirim Pesan",
-
-        footer:
-          "Dibuat dengan rasa ingin tahu dan semangat."
-      },
-
-      en: {
-        navHome: "Home",
-        navAbout: "About",
-        navProjects: "Projects",
-        navTech: "Tech Stack",
-        navContact: "Contact",
-
-        statusBadge:
-          "Available for projects & collaboration",
-
-        heroDesc:
-          "A student interested in Linux, automation, infrastructure, and web development. I enjoy learning through projects and experiments.",
-
-        explore: "Explore Projects",
-        contactMe: "Contact Me",
-
-        aboutTitle:
-          'About <span class="gradient-text">Me</span>',
-
-        aboutSubtitle:
-          "A little introduction about myself.",
-
-        aboutDesc:
-          "I am a student interested in technology, especially Linux, automation, infrastructure, and web development. I enjoy learning new things by building projects, exploring tools, and solving problems.",
-
-        projectsTitle:
-          'My <span class="gradient-text">Projects</span>',
-
-        projectsSubtitle:
-          "Some projects I have built.",
-
-        techTitle:
-          'Tech <span class="gradient-text">Stack</span>',
-
-        techSubtitle:
-          "Technologies and tools I am exploring.",
-
-        contactTitle:
-          'Get In <span class="gradient-text">Touch</span>',
-
-        contactSubtitle:
-          "Let's connect and share ideas.",
-
-        contactHeading:
-          "Find me on these platforms",
-
-        messageTitle:
-          "Send Me a Message",
-
-        sendMessage:
-          "Send Message",
-
-        footer:
-          "Built with curiosity and passion."
-      },
-
-      ar: {
-        navHome: "الرئيسية",
-        navAbout: "عني",
-        navProjects: "المشاريع",
-        navTech: "التقنيات",
-        navContact: "التواصل",
-
-        statusBadge:
-          "متاح للمشاريع والتعاون",
-
-        heroDesc:
-          "طالب مهتم بنظام لينكس والأتمتة والبنية التحتية وتطوير الويب. أحب التعلم من خلال المشاريع والتجارب.",
-
-        explore: "استكشف المشاريع",
-        contactMe: "تواصل معي",
-
-        aboutTitle:
-          ' <span class="gradient-text">عني</span>',
-
-        aboutSubtitle:
-          "مقدمة قصيرة عن نفسي.",
-
-        aboutDesc:
-          "أنا طالب مهتم بالتكنولوجيا، وخاصة لينكس والأتمتة والبنية التحتية وتطوير الويب. أحب تعلم أشياء جديدة من خلال بناء المشاريع وتجربة الأدوات وحل المشكلات.",
-
-        projectsTitle:
-          ' <span class="gradient-text">مشاريعي</span>',
-
-        projectsSubtitle:
-          "بعض المشاريع التي قمت ببنائها.",
-
-        techTitle:
-          ' <span class="gradient-text">التقنيات</span>',
-
-        techSubtitle:
-          "التقنيات والأدوات التي أتعلمها.",
-
-        contactTitle:
-          ' <span class="gradient-text">تواصل معي</span>',
-
-        contactSubtitle:
-          "لنتواصل ونتبادل الأفكار.",
-
-        contactHeading:
-          "يمكنك العثور علي هنا",
-
-        messageTitle:
-          "أرسل لي رسالة",
-
-        sendMessage:
-          "إرسال الرسالة",
-
-        footer:
-          "تم بناؤه بالفضول والشغف."
-      }
-
-    };
-
-
-    /* =====================================
        LANGUAGE SWITCHER
     ===================================== */
 
@@ -2177,28 +2620,231 @@
 
       if (!data) return;
 
+      currentLanguage = language;
+
       document.documentElement.lang = language;
 
       document.documentElement.dir =
         language === "ar" ? "rtl" : "ltr";
 
+      // Teks biasa & HTML
       document.querySelectorAll("[data-i18n]").forEach(element => {
 
         const key = element.dataset.i18n;
 
-        if (data[key]) {
+        if (data[key] !== undefined) {
           element.innerHTML = data[key];
         }
 
       });
 
-      localStorage.setItem("portfolioLanguage", language);
+      // Placeholder input
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+
+        const key = element.dataset.i18nPlaceholder;
+
+        if (data[key] !== undefined) {
+          element.placeholder = data[key];
+        }
+
+      });
+
+      // Perbarui modal jika sedang terbuka
+      renderProjectModal();
+
+      // Perbarui teks game
+      if (typeof memory !== "undefined") memory.refresh();
+
+      // Perbarui hasil pencarian (teks kartu berubah)
+      searchProjects();
+
+      document.getElementById("language").value = language;
+
+      try {
+        localStorage.setItem("portfolioLanguage", language);
+      } catch (e) { }
     }
 
-    const savedLanguage =
-      localStorage.getItem("portfolioLanguage") || "id";
+    /* =====================================
+       MINI GAME - MEMORY MATCH
+    ===================================== */
 
-    document.getElementById("language").value = savedLanguage;
+    const memory = (() => {
+
+      const board = document.getElementById("memoryBoard");
+      const movesEl = document.getElementById("gameMoves");
+      const timeEl = document.getElementById("gameTime");
+      const bestEl = document.getElementById("gameBest");
+      const winEl = document.getElementById("gameWin");
+      const winMsg = document.getElementById("gameWinMsg");
+
+      const icons = [
+        "fa-brands fa-linux",
+        "fa-brands fa-html5",
+        "fa-brands fa-js",
+        "fa-brands fa-java",
+        "fa-brands fa-git-alt",
+        "fa-brands fa-github",
+        "fa-solid fa-server",
+        "fa-solid fa-terminal"
+      ];
+
+      let first = null;
+      let lock = false;
+      let moves = 0;
+      let matched = 0;
+      let seconds = 0;
+      let timer = null;
+      let started = false;
+      let won = false;
+      let newRecord = false;
+      let best = null;
+
+      try {
+        best = parseInt(localStorage.getItem("memoryBest")) || null;
+      } catch (e) { }
+
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      function updateBest() {
+        bestEl.textContent = best === null ? "-" : best;
+      }
+
+      function reset() {
+
+        clearInterval(timer);
+        timer = null;
+
+        first = null;
+        lock = false;
+        moves = 0;
+        matched = 0;
+        seconds = 0;
+        started = false;
+        won = false;
+        newRecord = false;
+
+        movesEl.textContent = 0;
+        timeEl.textContent = 0;
+        winEl.classList.add("hide");
+        updateBest();
+
+        board.innerHTML = "";
+
+        shuffle([...icons, ...icons]).forEach(icon => {
+
+          const card = document.createElement("button");
+
+          card.type = "button";
+          card.className = "memory-card";
+          card.dataset.icon = icon;
+          card.setAttribute("aria-label", "card");
+
+          card.innerHTML =
+            '<span class="card-face card-front"><i class="fa-solid fa-question"></i></span>' +
+            '<span class="card-face card-back"><i class="' + icon + '"></i></span>';
+
+          card.addEventListener("click", () => flip(card));
+
+          board.appendChild(card);
+
+        });
+      }
+
+      function flip(card) {
+
+        if (lock || won) return;
+        if (card.classList.contains("flipped") || card.classList.contains("matched")) return;
+
+        if (!started) {
+          started = true;
+          timer = setInterval(() => {
+            seconds++;
+            timeEl.textContent = seconds;
+          }, 1000);
+        }
+
+        card.classList.add("flipped");
+
+        if (!first) {
+          first = card;
+          return;
+        }
+
+        moves++;
+        movesEl.textContent = moves;
+
+        if (first.dataset.icon === card.dataset.icon) {
+
+          first.classList.add("matched");
+          card.classList.add("matched");
+          first = null;
+          matched++;
+
+          if (matched === icons.length) finish();
+
+        } else {
+
+          lock = true;
+
+          const a = first;
+          const b = card;
+          first = null;
+
+          setTimeout(() => {
+            a.classList.remove("flipped");
+            b.classList.remove("flipped");
+            lock = false;
+          }, 800);
+
+        }
+      }
+
+      function finish() {
+
+        won = true;
+        clearInterval(timer);
+
+        if (best === null || moves < best) {
+          best = moves;
+          newRecord = true;
+          try { localStorage.setItem("memoryBest", best); } catch (e) { }
+        }
+
+        updateBest();
+        refresh();
+
+        setTimeout(() => winEl.classList.remove("hide"), 600);
+      }
+
+      function refresh() {
+
+        if (!won) return;
+
+        winMsg.innerHTML =
+          t("gameWin") +
+          "<br>" + t("gameMoves") + ": <b>" + moves + "</b> · <b>" + seconds + "</b>s" +
+          (newRecord ? "<br>🏆 " + t("newBest") : "");
+      }
+
+      reset();
+
+      return { reset, refresh };
+
+    })();
+
+
+    let savedLanguage = "id";
+
+    try {
+      savedLanguage = localStorage.getItem("portfolioLanguage") || "id";
+    } catch (e) { }
 
     setLanguage(savedLanguage);
 
