@@ -5,7 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080b18">
-  <title>Shofwan | Portfolio</title>
+  <title>Shofwan | Linux, Automation &amp; Web Developer Portfolio</title>
+  <meta name="description" content="Portfolio Shofwan - pelajar yang tertarik pada Linux, automation, infrastructure, dan web development. Lihat projek, artikel, dan hubungi saya.">
+  <meta name="keywords" content="Shofwan, portfolio, Linux, automation, web developer, systemd, HTML, JavaScript">
+  <meta name="author" content="Shofwan">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shofwan | Portfolio">
+  <meta property="og:description" content="Portfolio Shofwan - pelajar yang tertarik pada Linux, automation, infrastructure, dan web development. Lihat projek, artikel, dan hubungi saya.">
+  <meta property="og:locale" content="id_ID">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Shofwan | Portfolio">
+  <meta name="twitter:description" content="Portfolio Shofwan - pelajar yang tertarik pada Linux, automation, infrastructure, dan web development. Lihat projek, artikel, dan hubungi saya.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><rect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23080b18%27/><text x=%2732%27 y=%2746%27 font-size=%2744%27 font-weight=%27800%27 text-anchor=%27middle%27 fill=%27%2365d5ff%27 font-family=%27sans-serif%27>S</text></svg>">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shofwan",
+    "jobTitle": "Linux & Web Developer",
+    "sameAs": ["https://github.com/shofwan77"]
+  }
+  </script>
 
   <!-- GOOGLE FONTS (Cairo untuk teks Arab) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -933,7 +954,8 @@
       font-size: 12px;
       border-top: 1px solid var(--border);
     }
-        /* BOOT SCREEN + PARTICLES */
+
+    /* BOOT SCREEN + PARTICLES */
 
     .loader-line {
       width: min(260px, 70%);
@@ -1268,6 +1290,314 @@
         transition-duration: .01ms !important;
       }
     }
+
+    /* TECH CHIPS (kartu projek) */
+
+    .tech-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+      direction: ltr;
+    }
+
+    .tech-chips span {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 6px;
+      color: var(--accent);
+      background: rgba(101, 213, 255, .08);
+      border: 1px solid rgba(101, 213, 255, .18);
+    }
+
+    /* BLOG */
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .blog-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      backdrop-filter: blur(15px);
+      cursor: pointer;
+      transition: .35s;
+      display: flex;
+      flex-direction: column;
+      text-align: start;
+      color: var(--text);
+      font: inherit;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 15px 35px rgba(50, 130, 220, .13);
+    }
+
+    .blog-tag {
+      align-self: flex-start;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      color: var(--accent2);
+      background: rgba(155, 140, 255, .12);
+      margin-bottom: 14px;
+    }
+
+    .blog-card h3 {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .blog-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      flex: 1;
+    }
+
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 18px;
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .article-body p,
+    .article-body li {
+      color: #b6c0d8;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .article-body p {
+      margin-bottom: 14px;
+    }
+
+    .article-body ul,
+    .article-body ol {
+      margin: 0 0 14px;
+      padding-inline-start: 22px;
+    }
+
+    .article-body h4 {
+      color: #f4f7ff;
+      margin: 18px 0 8px;
+      font-size: 14px;
+    }
+
+    .article-body pre {
+      direction: ltr;
+      text-align: left;
+      background: rgba(0, 0, 0, .35);
+      border: 1px solid rgba(101, 213, 255, .2);
+      border-radius: 10px;
+      padding: 14px;
+      overflow-x: auto;
+      margin-bottom: 14px;
+    }
+
+    .article-body code {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #7fe3b3;
+    }
+
+    .article-body p code,
+    .article-body li code {
+      background: rgba(101, 213, 255, .1);
+      padding: 2px 6px;
+      border-radius: 5px;
+      color: #65d5ff;
+    }
+
+    /* TESTIMONIALS */
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      backdrop-filter: blur(15px);
+    }
+
+    .testi-card .fa-quote-left {
+      color: var(--accent);
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    .testi-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .testi-card b {
+      display: block;
+      font-size: 13px;
+    }
+
+    .testi-card small {
+      color: var(--accent);
+      font-size: 11px;
+    }
+
+    .testi-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 25px;
+      background: var(--card);
+      border: 1px dashed var(--border);
+      border-radius: 18px;
+    }
+
+    .testi-empty i {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .testi-empty p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+
+    /* FOOTER LINKS */
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 800px) {
+
+      .blog-grid,
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .blog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+      direction: ltr;
+    }
+
+    .blog-tags .blog-tag {
+      margin-bottom: 0;
+    }
+
+    #articleTags {
+      margin: -4px 0 18px;
+    }
+
+    .article-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
+
+    .article-body th,
+    .article-body td {
+      padding: 9px 12px;
+      border: 1px solid rgba(101, 213, 255, .18);
+      text-align: start;
+      color: #b6c0d8;
+    }
+
+    .article-body th {
+      background: rgba(101, 213, 255, .08);
+      color: #65d5ff;
+    }
+
+    .article-body .article-note {
+      padding: 12px 14px;
+      border-inline-start: 3px solid #9b8cff;
+      background: rgba(155, 140, 255, .1);
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .article-body a {
+      color: #65d5ff;
+    }
+
+    .tech-chips span.wip {
+      color: #fbbf24;
+      background: rgba(251, 191, 36, .1);
+      border-color: rgba(251, 191, 36, .3);
+    }
+
+    .projects-note {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      border-radius: 12px;
+      border: 1px dashed rgba(251, 191, 36, .45);
+      background: rgba(251, 191, 36, .07);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .projects-note i {
+      color: #fbbf24;
+      margin-top: 3px;
+    }
+
+    .tech-chips span.done,
+    .modal-tech span.done {
+      color: #34d399;
+      background: rgba(16, 185, 129, .12);
+      border-color: rgba(16, 185, 129, .35);
+    }
+
+    .modal-tech span.wip {
+      color: #fbbf24;
+      background: rgba(251, 191, 36, .1);
+      border-color: rgba(251, 191, 36, .3);
+    }
   </style>
 </head>
 
@@ -1306,7 +1636,7 @@
       <li><a href="#about" data-i18n="navAbout">Tentang</a></li>
       <li><a href="#projects" data-i18n="navProjects">Projek</a></li>
       <li><a href="#tech" data-i18n="navTech">Teknologi</a></li>
-      <li><a href="#game" data-i18n="navGame">Game</a></li>
+      <li><a href="#blog" data-i18n="navBlog">Blog</a></li>
       <li><a href="#contact" data-i18n="navContact">Kontak</a></li>
     </ul>
 
@@ -1338,7 +1668,7 @@
 
     <div class="status-badge reveal">
       <span class="pulse-dot"></span>
-      <span data-i18n="statusBadge">Siap untuk proyek & kolaborasi</span>
+      <span data-i18n="statusBadge">Tersedia untuk proyek & kolaborasi</span>
     </div>
 
     <h1 class="hero-title reveal">
@@ -1424,6 +1754,11 @@
       Beberapa project yang pernah saya bangun.
     </p>
 
+    <div class="projects-note reveal">
+      <i class="fa-solid fa-screwdriver-wrench"></i>
+      <span data-i18n="projWipNote">Catatan: setiap projek diberi label Selesai atau Dalam pengerjaan. Projek yang belum selesai akan terus diperbarui.</span>
+    </div>
+
     <!-- FILTER -->
     <div class="filter-container reveal">
 
@@ -1454,6 +1789,7 @@
         <p data-i18n="proj0Short">
           Automasi sederhana menggunakan Linux, Bash, systemd service, dan timer.
         </p>
+        <div class="tech-chips" data-chips="0"></div>
         <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
@@ -1463,6 +1799,7 @@
         <p data-i18n="proj1Short">
           Website penyewaan peralatan audiovisual dengan katalog dan sistem peminjaman.
         </p>
+        <div class="tech-chips" data-chips="1"></div>
         <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
@@ -1470,9 +1807,10 @@
         <div class="project-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
         <h3>Digital Wedding Invitation</h3>
         <p data-i18n="proj2Short">
-          Website undangan pernikahan Shofwan & Safira dengan slideshow, countdown,
+          Website undangan pernikahan dengan slideshow, countdown,
           musik, RSVP, dan buku ucapan.
         </p>
+        <div class="tech-chips" data-chips="2"></div>
         <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
@@ -1482,6 +1820,7 @@
         <p data-i18n="proj3Short">
           Aplikasi pengelolaan inventaris barang, peminjaman, dan pengembalian.
         </p>
+        <div class="tech-chips" data-chips="3"></div>
         <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
@@ -1491,6 +1830,7 @@
         <p data-i18n="proj4Short">
           Website pemutar musik dengan tampilan record player, playlist, dan fitur lirik lagu.
         </p>
+        <div class="tech-chips" data-chips="4"></div>
         <span class="project-hint" data-i18n="viewDetails">Lihat Detail →</span>
       </div>
 
@@ -1518,7 +1858,7 @@
 
       <div class="skill-card">
         <div class="skill-info">
-          <span><i class="fa-brands fa-linux"></i> Linux & Bash</span>
+                      <span><i class="fa-brands fa-linux"></i> Linux & Bash</span>
           <span>85%</span>
         </div>
         <div class="skill-bar"><div class="skill-progress" data-progress="85%"></div></div>
@@ -1565,6 +1905,36 @@
       </div>
 
     </div>
+
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+
+    <h2 class="section-title reveal" data-i18n="blogTitle">
+      Blog &amp; <span class="gradient-text">Artikel</span>
+    </h2>
+
+    <p class="section-subtitle reveal" data-i18n="blogSubtitle">
+      Catatan singkat dari apa yang sedang saya pelajari.
+    </p>
+
+    <div class="blog-grid reveal" id="blogGrid"></div>
+
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+
+    <h2 class="section-title reveal" data-i18n="testiTitle">
+      <span class="gradient-text">Testimoni</span>
+    </h2>
+
+    <p class="section-subtitle reveal" data-i18n="testiSubtitle">
+      Kata mereka yang pernah bekerja sama dengan saya.
+    </p>
+
+    <div class="testi-grid reveal" id="testiGrid"></div>
 
   </section>
 
@@ -1665,7 +2035,7 @@
 
           <button class="copy-btn" onclick="copyEmail('EMAIL_KAMU@example.com')" title="Copy Email"
             aria-label="Copy Email">
-            <i class="fa-solid fa-envelope-open-text"></i>
+            <i class="fa-solid fa-copy"></i>
           </button>
 
         </div>
@@ -1703,6 +2073,13 @@
 
   <!-- FOOTER -->
   <footer>
+    <div class="footer-links">
+      <a href="#home" data-i18n="navHome">Beranda</a>
+      <a href="#projects" data-i18n="navProjects">Projek</a>
+      <a href="#testimonials" data-i18n="testiTitle"><span class="gradient-text">Testimoni</span></a>
+      <a href="#game" data-i18n="navGame">Game</a>
+      <a href="#contact" data-i18n="navContact">Kontak</a>
+    </div>
     © <span id="year"></span> Shofwan.
     <span data-i18n="footer">Dibuat dengan rasa ingin tahu dan semangat.</span>
   </footer>
@@ -1714,6 +2091,16 @@
 
   <!-- TOAST -->
   <div id="toast" role="status"></div>
+
+  <!-- ARTICLE MODAL -->
+  <div class="modal" id="articleModal" onclick="if (event.target.id === 'articleModal') closeArticle()">
+    <div class="modal-content" style="width:min(680px,100%)">
+      <button class="modal-close" onclick="closeArticle()" aria-label="Close">&times;</button>
+      <h2 id="articleTitle"></h2>
+      <div class="blog-tags" id="articleTags"></div>
+      <div class="article-body" id="articleBody"></div>
+    </div>
+  </div>
 
   <!-- PROJECT MODAL -->
   <div class="modal" id="projectModal" onclick="closeOutside(event)">
@@ -1747,7 +2134,8 @@
     </div>
 
   </div>
-    <script>
+
+  <script>
 
     /* =====================================
        PROJECT DATA
@@ -1758,6 +2146,7 @@
     const projects = [
       {
         title: "Linux Automation",
+        status: "done",
         descKey: "proj0Long",
         technologies: ["Linux", "Systemd", "Bash", "Terminal"],
         github: "",
@@ -1765,6 +2154,7 @@
       },
       {
         title: "Binar Multimedia",
+        status: "wip",
         descKey: "proj1Long",
         technologies: ["HTML", "CSS", "JavaScript", "Node.js"],
         github: "",
@@ -1772,6 +2162,7 @@
       },
       {
         title: "Digital Wedding Invitation",
+        status: "done",
         descKey: "proj2Long",
         technologies: ["HTML", "CSS", "JavaScript", "Firebase", "Firestore"],
         github: "https://github.com/shofwan77/UndanganPernikahan",
@@ -1779,6 +2170,7 @@
       },
       {
         title: "PinjamYuk",
+        status: "wip",
         descKey: "proj3Long",
         technologies: ["HTML", "CSS", "JavaScript", "Node.js"],
         github: "",
@@ -1786,6 +2178,7 @@
       },
       {
         title: "Music Background Player",
+        status: "done",
         descKey: "proj4Long",
         technologies: ["HTML", "CSS", "JavaScript"],
         github: "",
@@ -1807,6 +2200,31 @@
         navTech: "Teknologi",
         navContact: "Kontak",
         navGame: "Game",
+        navBlog: "Blog",
+        art0Title: "Auto-Shutdown Setiap Malam dengan systemd Timer",
+        art0Excerpt: "Membuat komputer Linux mati otomatis pada jam tertentu dengan service dan timer systemd.",
+        art1Title: "Mengenal Permission Linux: chmod, chown, dan chgrp",
+        art1Excerpt: "Memahami hak akses file di Linux dan cara mengaturnya dengan chmod, chown, dan chgrp.",
+        art2Title: "Mengelola Service Linux Menggunakan systemctl",
+        art2Excerpt: "Perintah dasar systemctl untuk menjalankan, menghentikan, dan memeriksa service di Linux.",
+        art3Title: "Memahami Git Stash untuk Menyimpan Perubahan Sementara",
+        art3Excerpt: "Menyimpan perubahan yang belum selesai tanpa commit saat harus berpindah branch.",
+        art4Title: "Mengenal Virtual Machine dengan QEMU",
+        art4Excerpt: "Menjalankan sistem operasi lain di dalam Linux menggunakan QEMU, ISO, dan virtual disk.",
+        readMin: "menit baca",
+        articleLangNote: "",
+        statusDone: "Selesai",
+        statusWip: "Dalam pengerjaan",
+        projWipNote: "Catatan: setiap projek diberi label Selesai atau Dalam pengerjaan. Projek yang belum selesai akan terus diperbarui.",
+        blogTitle: "Blog &amp; <span class=\"gradient-text\">Artikel</span>",
+        blogSubtitle: "Catatan singkat dari apa yang sedang saya pelajari.",
+        readArticle: "Baca Artikel →",
+        testiTitle: "<span class=\"gradient-text\">Testimoni</span>",
+        testiSubtitle: "Kata mereka yang pernah bekerja sama dengan saya.",
+        testiEmpty: "Testimoni akan segera hadir. Pernah bekerja sama atau memakai projek saya? Saya senang mendengar pendapatmu.",
+        testiCta: "Kirim Testimoni",
+        testiWa: "Halo Shofwan! Saya ingin memberikan testimoni:",
+        closeLabel: "Tutup",
 
         gameTitle: 'Mini <span class="gradient-text">Game</span>',
         gameSubtitle: "Istirahat sejenak — cocokkan ikon teknologi dan uji daya ingatmu!",
@@ -1856,8 +2274,8 @@
         proj1Short: "Website penyewaan peralatan audiovisual dengan katalog dan sistem peminjaman.",
         proj1Long: "Website penyewaan peralatan audiovisual yang menyediakan katalog produk, detail peralatan, informasi stok, dan sistem keranjang peminjaman.",
 
-        proj2Short: "Website undangan pernikahan Shofwan & Safira dengan slideshow, countdown, musik, RSVP, dan buku ucapan.",
-        proj2Long: "Website undangan pernikahan digital Shofwan & Safira. Memiliki slideshow foto, countdown pernikahan, musik, RSVP, serta buku ucapan yang terintegrasi dengan Firebase dan Firestore.",
+        proj2Short: "Website undangan pernikahan dengan slideshow, countdown, musik, RSVP, dan buku ucapan.",
+        proj2Long: "Website undangan pernikahan digital. Memiliki slideshow foto, countdown pernikahan, musik, RSVP, serta buku ucapan yang terintegrasi dengan Firebase dan Firestore.",
 
         proj3Short: "Aplikasi pengelolaan inventaris barang, peminjaman, dan pengembalian.",
         proj3Long: "Aplikasi pengelolaan inventaris dan peminjaman barang. Memiliki fitur daftar barang, pencatatan peminjaman, dan pengembalian barang.",
@@ -1892,6 +2310,31 @@
         navTech: "Tech Stack",
         navContact: "Contact",
         navGame: "Game",
+        navBlog: "Blog",
+        art0Title: "Nightly Auto-Shutdown with a systemd Timer",
+        art0Excerpt: "Make a Linux machine power off automatically at a set time using a systemd service and timer.",
+        art1Title: "Understanding Linux Permissions: chmod, chown, and chgrp",
+        art1Excerpt: "Understand file permissions in Linux and how to manage them with chmod, chown, and chgrp.",
+        art2Title: "Managing Linux Services with systemctl",
+        art2Excerpt: "Basic systemctl commands to start, stop, and inspect services on Linux.",
+        art3Title: "Understanding Git Stash to Save Changes Temporarily",
+        art3Excerpt: "Save unfinished changes without committing when you need to switch branches.",
+        art4Title: "Getting to Know Virtual Machines with QEMU",
+        art4Excerpt: "Run another operating system inside Linux using QEMU, an ISO, and a virtual disk.",
+        readMin: "min read",
+        articleLangNote: "This article is written in Indonesian.",
+        statusDone: "Completed",
+        statusWip: "In progress",
+        projWipNote: "Note: each project is labelled Completed or In progress. Unfinished projects will keep being updated.",
+        blogTitle: "Blog &amp; <span class=\"gradient-text\">Articles</span>",
+        blogSubtitle: "Short notes from what I am currently learning.",
+        readArticle: "Read Article →",
+        testiTitle: "<span class=\"gradient-text\">Testimonials</span>",
+        testiSubtitle: "What people I have worked with say.",
+        testiEmpty: "Testimonials are coming soon. Have you worked with me or used one of my projects? I would love to hear your thoughts.",
+        testiCta: "Send a Testimonial",
+        testiWa: "Hello Shofwan! I would like to give a testimonial:",
+        closeLabel: "Close",
 
         gameTitle: 'Mini <span class="gradient-text">Game</span>',
         gameSubtitle: "Take a short break — match the tech icons and test your memory!",
@@ -1941,8 +2384,8 @@
         proj1Short: "An audiovisual equipment rental website with a catalog and borrowing system.",
         proj1Long: "An audiovisual equipment rental website featuring a product catalog, equipment details, stock information, and a borrowing cart system.",
 
-        proj2Short: "Shofwan & Safira's wedding invitation website with a slideshow, countdown, music, RSVP, and guestbook.",
-        proj2Long: "A digital wedding invitation website for Shofwan & Safira. It features a photo slideshow, a wedding countdown, music, RSVP, and a guestbook integrated with Firebase and Firestore.",
+        proj2Short: "Wedding invitation website with a slideshow, countdown, music, RSVP, and guestbook.",
+        proj2Long: "A digital wedding invitation website. It features a photo slideshow, a wedding countdown, music, RSVP, and a guestbook integrated with Firebase and Firestore.",
 
         proj3Short: "An application for managing inventory, borrowing, and returns.",
         proj3Long: "An inventory and item-borrowing management application. It features an item list, borrowing records, and item returns.",
@@ -1977,6 +2420,31 @@
         navTech: "التقنيات",
         navContact: "التواصل",
         navGame: "لعبة",
+        navBlog: "المدونة",
+        art0Title: "إيقاف التشغيل التلقائي كل ليلة باستخدام مؤقت systemd",
+        art0Excerpt: "اجعل جهاز لينكس يُطفأ تلقائيًا في وقت محدد باستخدام خدمة ومؤقت systemd.",
+        art1Title: "فهم صلاحيات لينكس: chmod وchown وchgrp",
+        art1Excerpt: "افهم صلاحيات الملفات في لينكس وكيفية إدارتها بـ chmod وchown وchgrp.",
+        art2Title: "إدارة خدمات لينكس باستخدام systemctl",
+        art2Excerpt: "أوامر systemctl الأساسية لتشغيل الخدمات وإيقافها وفحصها في لينكس.",
+        art3Title: "فهم Git Stash لحفظ التغييرات مؤقتًا",
+        art3Excerpt: "احفظ التغييرات غير المكتملة دون commit عندما تحتاج إلى تبديل الفرع.",
+        art4Title: "التعرف على الآلات الافتراضية باستخدام QEMU",
+        art4Excerpt: "شغّل نظام تشغيل آخر داخل لينكس باستخدام QEMU وملف ISO وقرص افتراضي.",
+        readMin: "دقائق للقراءة",
+        articleLangNote: "هذا المقال مكتوب باللغة الإندونيسية.",
+        statusDone: "مكتمل",
+        statusWip: "قيد التطوير",
+        projWipNote: "ملاحظة: كل مشروع مصنّف كمكتمل أو قيد التطوير، وسيستمر تحديث المشاريع غير المكتملة.",
+        blogTitle: "<span class=\"gradient-text\">المدونة والمقالات</span>",
+        blogSubtitle: "ملاحظات قصيرة مما أتعلمه حاليًا.",
+        readArticle: "اقرأ المقال ←",
+        testiTitle: "<span class=\"gradient-text\">آراء العملاء</span>",
+        testiSubtitle: "ما يقوله من عملوا معي.",
+        testiEmpty: "ستتوفر الآراء قريبًا. هل عملت معي أو استخدمت أحد مشاريعي؟ يسعدني سماع رأيك.",
+        testiCta: "أرسل رأيك",
+        testiWa: "مرحبًا شفوان! أود تقديم رأيي:",
+        closeLabel: "إغلاق",
 
         gameTitle: '<span class="gradient-text">لعبة صغيرة</span>',
         gameSubtitle: "خذ استراحة قصيرة — طابق أيقونات التقنية واختبر ذاكرتك!",
@@ -2064,6 +2532,7 @@
       const data = translations[currentLanguage] || translations.id;
       return data[key] !== undefined ? data[key] : (translations.id[key] || "");
     }
+
 
     /* =====================================
        PRELOADER
@@ -2480,7 +2949,7 @@
         t(project.descKey);
 
       document.getElementById("modalTech").innerHTML =
-        project.technologies
+        statusBadge(project) + project.technologies
           .map(tech => `<span>${tech}</span>`)
           .join("");
 
@@ -2652,6 +3121,12 @@
       // Perbarui modal jika sedang terbuka
       renderProjectModal();
 
+      // Perbarui blog, testimoni, artikel terbuka
+      renderBlog();
+      renderTechChips();
+      renderTestimonials();
+      renderArticle();
+
       // Perbarui teks game
       if (typeof memory !== "undefined") memory.refresh();
 
@@ -2664,6 +3139,316 @@
         localStorage.setItem("portfolioLanguage", language);
       } catch (e) { }
     }
+
+    /* =====================================
+       BLOG, TESTIMONI, TECH CHIPS
+    ===================================== */
+
+    const articleCount = 5;
+    const articleTags = [["Linux", "systemd", "Automation"], ["Linux", "Terminal", "Security"], ["Linux", "systemd", "Administration"], ["Git", "Version Control", "Development"], ["Linux", "QEMU", "Virtualization"]];
+    const articleMinutes = [4, 5, 4, 4, 5];
+
+    // Isi artikel (Bahasa Indonesia)
+    const articleBodies = [
+      `<h4>Pendahuluan</h4>
+<p>Linux memiliki berbagai cara untuk menjalankan perintah secara otomatis. Salah satunya adalah menggunakan <b>systemd Timer</b>.</p>
+<p>Berbeda dengan cron, systemd Timer terintegrasi dengan systemd sehingga jadwal dan status tugas dapat diperiksa menggunakan <code>systemctl</code>.</p>
+<p>Pada tutorial ini, kita akan mengenal cara membuat service dan timer untuk menjalankan tugas terjadwal.</p>
+<h4>1. Mengenal systemd Timer</h4>
+<p>Systemd Timer menggunakan dua file utama:</p>
+<ul><li><code>.service</code> untuk menentukan perintah yang akan dijalankan.</li><li><code>.timer</code> untuk menentukan waktu pelaksanaan perintah.</li></ul>
+<h4>2. Membuat Service</h4>
+<p>Buat file service:</p>
+<pre><code>sudo nano /etc/systemd/system/auto-shutdown.service</code></pre>
+<p>Masukkan konfigurasi:</p>
+<pre><code>[Unit]
+Description=Auto Shutdown Service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl poweroff</code></pre>
+<p>Penjelasan:</p>
+<ul><li><code>Description</code>: memberikan nama atau deskripsi service.</li><li><code>Type=oneshot</code>: menjalankan satu tugas hingga selesai.</li><li><code>ExecStart</code>: menentukan perintah yang dijalankan.</li></ul>
+<h4>3. Membuat Timer</h4>
+<p>Buat file timer:</p>
+<pre><code>sudo nano /etc/systemd/system/auto-shutdown.timer</code></pre>
+<p>Masukkan konfigurasi:</p>
+<pre><code>[Unit]
+Description=Auto Shutdown Every Night
+
+[Timer]
+OnCalendar=*-*-* 23:00:00
+Unit=auto-shutdown.service
+
+[Install]
+WantedBy=timers.target</code></pre>
+<p><code>OnCalendar</code> menentukan jadwal setiap hari pukul 23.00.</p>
+<p class="article-note">Catatan: untuk service yang mematikan komputer, jangan tambahkan <code>Persistent=true</code>. Opsi itu menjalankan jadwal yang terlewat saat komputer mati begitu sistem aktif kembali, sehingga komputer bisa langsung dimatikan lagi setelah dinyalakan. Opsi ini cocok untuk tugas seperti backup, bukan shutdown.</p>
+<h4>4. Mengaktifkan Timer</h4>
+<p>Muat ulang konfigurasi systemd:</p>
+<pre><code>sudo systemctl daemon-reload</code></pre>
+<p>Aktifkan timer:</p>
+<pre><code>sudo systemctl enable --now auto-shutdown.timer</code></pre>
+<h4>5. Memeriksa Status</h4>
+<pre><code>systemctl status auto-shutdown.timer</code></pre>
+<p>Untuk melihat seluruh timer aktif:</p>
+<pre><code>systemctl list-timers</code></pre>
+<h4>6. Menonaktifkan Timer</h4>
+<pre><code>sudo systemctl disable --now auto-shutdown.timer</code></pre>
+<h4>Kesimpulan</h4>
+<p>Systemd Timer memudahkan pengelolaan tugas otomatis pada Linux. Dengan memisahkan service dan timer, kita dapat menentukan perintah sekaligus mengatur jadwal pelaksanaannya.</p>
+<p class="article-note">Catatan: service di atas benar-benar mematikan komputer. Pastikan seluruh pekerjaan sudah disimpan sebelum mengaktifkannya.</p>`,
+      `<h4>Pendahuluan</h4>
+<p>Linux memiliki sistem <b>permission</b> atau hak akses untuk mengatur siapa saja yang dapat membaca, mengubah, dan menjalankan sebuah file.</p>
+<p>Permission sangat penting dalam pengelolaan sistem Linux karena membantu menjaga keamanan file dan direktori.</p>
+<p>Ada tiga perintah yang sering digunakan untuk mengelola permission, yaitu <code>chmod</code>, <code>chown</code>, dan <code>chgrp</code>.</p>
+<h4>1. Mengenal Tiga Jenis Permission</h4>
+<p>Linux memiliki tiga jenis hak akses utama:</p>
+<table><thead><tr><th>Permission</th><th>Simbol</th><th>Fungsi</th></tr></thead><tbody><tr><td>Read</td><td>r</td><td>Membaca file</td></tr><tr><td>Write</td><td>w</td><td>Mengubah file</td></tr><tr><td>Execute</td><td>x</td><td>Menjalankan file</td></tr></tbody></table>
+<p>Permission juga dibagi menjadi tiga kelompok pengguna:</p>
+<ul><li><code>u</code> — User atau pemilik file.</li><li><code>g</code> — Group atau kelompok pengguna.</li><li><code>o</code> — Others atau pengguna lainnya.</li></ul>
+<h4>2. Melihat Permission File</h4>
+<p>Gunakan perintah:</p>
+<pre><code>ls -l</code></pre>
+<p>Contoh hasil:</p>
+<pre><code>-rw-r--r-- 1 shofwan shofwan 1200 file.txt</code></pre>
+<p>Bagian <code>-rw-r--r--</code> menunjukkan hak akses file tersebut. Artinya:</p>
+<ul><li>Pemilik dapat membaca dan menulis.</li><li>Group hanya dapat membaca.</li><li>Others hanya dapat membaca.</li></ul>
+<h4>3. Mengubah Permission dengan chmod</h4>
+<p>Buat file percobaan:</p>
+<pre><code>touch contoh.txt</code></pre>
+<p>Berikan permission menggunakan:</p>
+<pre><code>chmod 755 contoh.txt</code></pre>
+<p>Angka permission memiliki arti:</p>
+<table><thead><tr><th>Angka</th><th>Hak Akses</th></tr></thead><tbody><tr><td>7</td><td>Read + Write + Execute</td></tr><tr><td>6</td><td>Read + Write</td></tr><tr><td>5</td><td>Read + Execute</td></tr><tr><td>4</td><td>Read</td></tr></tbody></table>
+<p>Angka <code>755</code> berarti:</p>
+<ul><li>Pemilik mendapatkan akses <code>rwx</code>.</li><li>Group mendapatkan akses <code>r-x</code>.</li><li>Others mendapatkan akses <code>r-x</code>.</li></ul>
+<p>Kamu juga dapat menggunakan format simbolik:</p>
+<pre><code>chmod u+x contoh.txt</code></pre>
+<p>Perintah tersebut menambahkan izin execute kepada pemilik file.</p>
+<h4>4. Mengubah Pemilik dengan chown</h4>
+<p>Perintah <code>chown</code> digunakan untuk mengubah pemilik file.</p>
+<pre><code>sudo chown username contoh.txt</code></pre>
+<p>Untuk mengubah pemilik sekaligus group:</p>
+<pre><code>sudo chown username:group contoh.txt</code></pre>
+<p>Ganti <code>username</code> dan <code>group</code> sesuai akun yang tersedia pada sistem.</p>
+<h4>5. Mengubah Group dengan chgrp</h4>
+<p>Jika hanya ingin mengubah group:</p>
+<pre><code>sudo chgrp groupname contoh.txt</code></pre>
+<h4>6. Memeriksa Kembali Permission</h4>
+<p>Setelah melakukan perubahan, periksa kembali menggunakan:</p>
+<pre><code>ls -l contoh.txt</code></pre>
+<h4>Kesimpulan</h4>
+<p>Perintah <code>chmod</code>, <code>chown</code>, dan <code>chgrp</code> merupakan dasar penting dalam administrasi Linux. Ketiganya membantu mengelola hak akses, kepemilikan, dan keamanan file.</p>`,
+      `<h4>Pendahuluan</h4>
+<p>Pada Linux modern yang menggunakan systemd, <b>service</b> digunakan untuk mengelola berbagai proses yang berjalan di latar belakang.</p>
+<p>Contohnya adalah service jaringan, SSH, Bluetooth, dan berbagai layanan sistem lainnya.</p>
+<p>Untuk mengelolanya, kita dapat menggunakan perintah <code>systemctl</code>.</p>
+<h4>1. Mengenal systemctl</h4>
+<p><code>systemctl</code> merupakan command-line tool untuk berinteraksi dengan systemd.</p>
+<p>Dengan perintah ini, kita dapat menjalankan, menghentikan, mengaktifkan, dan memeriksa service.</p>
+<h4>2. Melihat Daftar Service</h4>
+<p>Gunakan:</p>
+<pre><code>systemctl list-units --type=service</code></pre>
+<p>Untuk melihat service yang sedang berjalan:</p>
+<pre><code>systemctl list-units --type=service --state=running</code></pre>
+<h4>3. Memeriksa Status Service</h4>
+<p>Contohnya, memeriksa service SSH:</p>
+<pre><code>systemctl status ssh</code></pre>
+<p>Jika service tersedia, informasi yang ditampilkan mencakup status, proses, dan log terbaru.</p>
+<h4>4. Menjalankan Service</h4>
+<p>Untuk menjalankan service:</p>
+<pre><code>sudo systemctl start ssh</code></pre>
+<p>Perintah tersebut menjalankan service SSH untuk sesi sistem saat ini.</p>
+<h4>5. Menghentikan Service</h4>
+<p>Untuk menghentikan service:</p>
+<pre><code>sudo systemctl stop ssh</code></pre>
+<h4>6. Restart Service</h4>
+<p>Jika konfigurasi service mengalami perubahan, kita dapat melakukan restart:</p>
+<pre><code>sudo systemctl restart ssh</code></pre>
+<h4>7. Mengaktifkan Service Saat Boot</h4>
+<p>Agar service otomatis berjalan ketika komputer dinyalakan:</p>
+<pre><code>sudo systemctl enable ssh</code></pre>
+<p>Untuk langsung mengaktifkannya sekaligus menjalankannya:</p>
+<pre><code>sudo systemctl enable --now ssh</code></pre>
+<h4>8. Melihat Log Service</h4>
+<p>Gunakan <code>journalctl</code> untuk melihat log:</p>
+<pre><code>journalctl -u ssh</code></pre>
+<p>Untuk menampilkan log terbaru secara langsung:</p>
+<pre><code>journalctl -u ssh -f</code></pre>
+<h4>Kesimpulan</h4>
+<p><code>systemctl</code> merupakan salah satu perintah penting bagi pengguna Linux, khususnya dalam administrasi sistem. Dengan memahami perintah-perintah dasarnya, kita dapat mengelola berbagai service melalui terminal.</p>`,
+      `<h4>Pendahuluan</h4>
+<p>Saat mengerjakan sebuah project menggunakan Git, terkadang kita perlu berpindah branch meskipun masih memiliki perubahan yang belum selesai.</p>
+<p>Salah satu solusinya adalah menggunakan <code>git stash</code>.</p>
+<p>Git Stash memungkinkan kita menyimpan perubahan sementara tanpa harus membuat commit.</p>
+<h4>1. Mengenal Git Stash</h4>
+<p>Misalnya kita sedang mengerjakan fitur baru pada sebuah project. Namun, tiba-tiba kita perlu berpindah branch untuk memperbaiki bug.</p>
+<p>Daripada melakukan commit terhadap pekerjaan yang belum selesai, kita dapat menyimpannya menggunakan stash.</p>
+<h4>2. Memeriksa Perubahan</h4>
+<p>Pertama, periksa kondisi repository:</p>
+<pre><code>git status</code></pre>
+<p>Perintah tersebut menampilkan file yang mengalami perubahan.</p>
+<h4>3. Menyimpan Perubahan</h4>
+<p>Gunakan:</p>
+<pre><code>git stash</code></pre>
+<p>Untuk memberikan nama pada stash:</p>
+<pre><code>git stash push -m "Pengerjaan fitur baru"</code></pre>
+<p>Perubahan yang disimpan akan dikeluarkan dari working directory sehingga kita dapat bekerja dengan lebih leluasa.</p>
+<h4>4. Melihat Daftar Stash</h4>
+<p>Untuk melihat seluruh stash:</p>
+<pre><code>git stash list</code></pre>
+<p>Contoh hasil:</p>
+<pre><code>stash@{0}: On main: Pengerjaan fitur baru
+stash@{1}: On development: Perbaikan tampilan</code></pre>
+<h4>5. Mengembalikan Perubahan</h4>
+<p>Untuk mengembalikan perubahan terakhir:</p>
+<pre><code>git stash apply</code></pre>
+<p>Jika ingin mengembalikan sekaligus menghapus stash tersebut dari daftar:</p>
+<pre><code>git stash pop</code></pre>
+<h4>6. Menghapus Stash</h4>
+<p>Untuk menghapus satu stash:</p>
+<pre><code>git stash drop stash@{0}</code></pre>
+<p>Untuk menghapus seluruh stash:</p>
+<pre><code>git stash clear</code></pre>
+<p class="article-note">Perhatikan bahwa <code>git stash clear</code> menghapus semua entri stash dan tidak mudah dipulihkan.</p>
+<h4>7. Menyimpan File Untracked</h4>
+<p>Secara default, Git Stash tidak menyimpan file baru yang belum dilacak Git.</p>
+<p>Untuk menyertakannya:</p>
+<pre><code>git stash push -u -m "Simpan semua perubahan"</code></pre>
+<h4>Kesimpulan</h4>
+<p>Git Stash sangat membantu ketika kita perlu berpindah pekerjaan tanpa kehilangan perubahan yang belum selesai. Fitur ini membuat alur kerja Git lebih fleksibel dan terorganisasi.</p>`,
+      `<h4>Pendahuluan</h4>
+<p><b>Virtual Machine</b> atau VM memungkinkan kita menjalankan sistem operasi lain di dalam sistem operasi utama.</p>
+<p>Teknologi ini sangat berguna untuk belajar Linux, melakukan eksperimen, dan menguji konfigurasi tanpa harus mengubah instalasi sistem utama.</p>
+<p>Salah satu software yang dapat digunakan adalah <b>QEMU</b>.</p>
+<h4>1. Mengenal QEMU</h4>
+<p>QEMU merupakan emulator dan virtualizer yang dapat menjalankan sistem operasi melalui mesin virtual.</p>
+<p>QEMU dapat digunakan bersama KVM untuk mendapatkan akselerasi virtualisasi perangkat keras jika CPU dan sistem mendukungnya.</p>
+<h4>2. Memeriksa Dukungan Virtualisasi</h4>
+<p>Pada Linux, periksa apakah prosesor memiliki fitur virtualisasi:</p>
+<pre><code>lscpu | grep Virtualization</code></pre>
+<p>Untuk memeriksa ketersediaan KVM:</p>
+<pre><code>ls -l /dev/kvm</code></pre>
+<p>Jika <code>/dev/kvm</code> tersedia dan memiliki permission yang sesuai, sistem dapat menggunakan KVM.</p>
+<p>Jika tidak tersedia, QEMU masih dapat berjalan menggunakan emulasi perangkat lunak, meskipun performanya bisa lebih lambat.</p>
+<h4>3. Menginstal QEMU</h4>
+<p>Pada distribusi berbasis Ubuntu atau Debian, jalankan:</p>
+<pre><code>sudo apt update</code></pre>
+<p>Kemudian instal QEMU dan komponen pendukung:</p>
+<pre><code>sudo apt install qemu-system-x86 qemu-utils</code></pre>
+<h4>4. Menyiapkan File ISO</h4>
+<p>Unduh file ISO sistem operasi yang ingin dijalankan.</p>
+<p>Sebagai contoh, gunakan ISO Linux Mint atau Ubuntu.</p>
+<p>Simpan file ISO pada folder yang mudah diakses, misalnya:</p>
+<pre><code>~/Downloads/linuxmint.iso</code></pre>
+<h4>5. Membuat Virtual Disk</h4>
+<p>Buat file virtual disk menggunakan <code>qemu-img</code>:</p>
+<pre><code>qemu-img create -f qcow2 linuxmint.qcow2 20G</code></pre>
+<p>Penjelasan:</p>
+<ul><li><code>create</code> membuat virtual disk baru.</li><li><code>-f qcow2</code> menentukan format disk.</li><li><code>linuxmint.qcow2</code> adalah nama file disk.</li><li><code>20G</code> merupakan kapasitas virtual disk.</li></ul>
+<p>Format QCOW2 mendukung fitur seperti thin provisioning, sehingga ukuran file fisiknya dapat bertambah sesuai kebutuhan.</p>
+<h4>6. Memahami Struktur File VM</h4>
+<p>Contoh struktur direktori:</p>
+<pre><code>VM/
+└── linuxmint/
+    ├── linuxmint.iso
+    └── linuxmint.qcow2</code></pre>
+<p>File ISO berisi installer sistem operasi, sedangkan file QCOW2 menjadi media penyimpanan virtual untuk VM.</p>
+<h4>7. Mengelola Virtual Machine</h4>
+<p>Untuk mengelola VM secara lebih mudah, kita dapat menggunakan aplikasi berbasis GUI seperti Virtual Machine Manager.</p>
+<p>Situs resmi: <a href="https://virt-manager.org" target="_blank" rel="noopener noreferrer">Virtual Machine Manager</a>. Aplikasi ini menyediakan antarmuka untuk membuat, menjalankan, dan mengelola mesin virtual.</p>
+<h4>Kesimpulan</h4>
+<p>QEMU merupakan salah satu pilihan untuk mempelajari virtualisasi pada Linux. Dengan memahami ISO, virtual disk, dan dukungan KVM, kita dapat mulai membangun lingkungan pengujian sistem operasi sendiri.</p>`
+    ];
+        let currentArticle = null;
+
+    // Isi testimoni asli di sini, contoh:
+    // { name: "Nama", role: "Klien / Teman", text: { id: "...", en: "...", ar: "..." } }
+    const testimonials = [];
+
+    function statusBadge(p) {
+      return p.status === "done"
+        ? `<span class="done"><i class="fa-solid fa-circle-check"></i> ${t("statusDone")}</span>`
+        : `<span class="wip"><i class="fa-solid fa-hammer"></i> ${t("statusWip")}</span>`;
+    }
+
+    function renderTechChips() {
+      document.querySelectorAll("[data-chips]").forEach(box => {
+        const p = projects[Number(box.dataset.chips)];
+        box.innerHTML = statusBadge(p) +
+          p.technologies.map(x => `<span>${x}</span>`).join("");
+      });
+    }
+
+    function renderBlog() {
+      let html = "";
+      for (let i = 0; i < articleCount; i++) {
+        html += `<button type="button" class="blog-card" onclick="openArticle(${i})">
+          <div class="blog-tags">${articleTags[i].map(x => `<span class="blog-tag">${x}</span>`).join("")}</div>
+          <h3>${t("art" + i + "Title")}</h3>
+          <p>${t("art" + i + "Excerpt")}</p>
+          <div class="blog-meta"><span>${articleMinutes[i]} ${t("readMin")}</span><span>${t("readArticle")}</span></div>
+        </button>`;
+      }
+      document.getElementById("blogGrid").innerHTML = html;
+    }
+
+    function openArticle(i) {
+      currentArticle = i;
+      renderArticle();
+      document.getElementById("articleModal").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function renderArticle() {
+      if (currentArticle === null) return;
+      document.getElementById("articleTitle").textContent = t("art" + currentArticle + "Title");
+      document.getElementById("articleTags").innerHTML =
+        articleTags[currentArticle].map(x => `<span class="blog-tag">${x}</span>`).join("");
+      const note = currentLanguage === "id" ? "" : `<p class="article-note">${t("articleLangNote")}</p>`;
+      document.getElementById("articleBody").innerHTML = note + articleBodies[currentArticle];
+    }
+
+    function closeArticle() {
+      currentArticle = null;
+      document.getElementById("articleModal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeArticle();
+    });
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    function renderTestimonials() {
+      const grid = document.getElementById("testiGrid");
+
+      if (!testimonials.length) {
+        const link = "https://wa.me/6285868028808?text=" + encodeURIComponent(t("testiWa"));
+        grid.innerHTML = `<div class="testi-empty">
+          <i class="fa-solid fa-comment-dots"></i>
+          <p>${t("testiEmpty")}</p>
+          <a class="btn btn-outline" href="${link}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> ${t("testiCta")}
+          </a>
+        </div>`;
+        return;
+      }
+
+      grid.innerHTML = testimonials.map(x => `<div class="testi-card">
+        <i class="fa-solid fa-quote-left"></i>
+        <p>${escapeHtml((x.text && (x.text[currentLanguage] || x.text.id)) || "")}</p>
+        <b>${escapeHtml(x.name)}</b>
+        <small>${escapeHtml(x.role || "")}</small>
+      </div>`).join("");
+    }
+
+    renderTechChips();
+
 
     /* =====================================
        MINI GAME - MEMORY MATCH
